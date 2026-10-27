@@ -5,13 +5,24 @@ extends CharacterBody2D
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-func _physics_process(delta: float) -> void:
+const FORASTERO_SHEET := preload("res://assets/art/characters/player/forastero_sheet.png")
+const FORASTERA_SHEET := preload("res://assets/art/characters/player/forastera_sheet.png")
+
+func _ready() -> void:
+	var character_sheet := FORASTERO_SHEET if GameManager.selected_character == GameManager.CHARACTER_FORASTERO else FORASTERA_SHEET
+	for animation_name in animated_sprite.sprite_frames.get_animation_names():
+		for frame_index in range(animated_sprite.sprite_frames.get_frame_count(animation_name)):
+			var frame_texture := animated_sprite.sprite_frames.get_frame_texture(animation_name, frame_index) as AtlasTexture
+			if frame_texture:
+				frame_texture.atlas = character_sheet
+
+func _physics_process(_delta: float) -> void:
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * speed
 	move_and_slide()
-	_update_visual(direction, delta)
+	_update_visual(direction)
 
-func _update_visual(direction: Vector2, delta: float) -> void:
+func _update_visual(direction: Vector2) -> void:
 	if direction != Vector2.ZERO:
 		var animation_name := _get_walk_animation(direction)
 		if animated_sprite.animation != animation_name or not animated_sprite.is_playing():
