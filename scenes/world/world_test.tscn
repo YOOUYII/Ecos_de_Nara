@@ -7,6 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://djaqwhuydfoot" path="res://assets/art/props/fuente.png" id="5_fuente"]
 [ext_resource type="Texture2D" uid="uid://dvgmj4jawfqnp" path="res://assets/art/props/barrera_camino.png" id="6_barrera"]
 [ext_resource type="Texture2D" uid="uid://ut6ardv61t0i" path="res://assets/art/props/arbol_aldea_g.png" id="7_arbol"]
+[ext_resource type="Script" path="res://scripts/world/world_test.gd" id="8_world"]
+[ext_resource type="Texture2D" path="res://assets/art/props/edificios/edif_casa_guardia.png" id="9_casa_guardia"]
+[ext_resource type="Texture2D" path="res://assets/art/props/puerta_bloqueada.png" id="10_puerta"]
+[ext_resource type="Texture2D" path="res://assets/art/props/cartel_direccion.png" id="11_cartel"]
+[ext_resource type="Texture2D" path="res://assets/art/props/arbol_aldea_m.png" id="12_arbol_m"]
+[ext_resource type="Texture2D" path="res://assets/art/props/banco_aldea.png" id="13_banco"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/npcs/npc_panadera_idle.png" id="14_panadera"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/npcs/npc_guardia_idle.png" id="15_guardia"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/npcs/npc_nina_idle.png" id="16_nina"]
 
 [sub_resource type="TileSetAtlasSource" id="atlas_pueblo"]
 texture = ExtResource("2_tiles")
@@ -46,7 +55,32 @@ radius = 45.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbcmv"]
 size = Vector2(93, 32)
 
+[sub_resource type="RectangleShape2D" id="guard_house_collision"]
+size = Vector2(112, 52)
+
+[sub_resource type="RectangleShape2D" id="river_gate_collision"]
+size = Vector2(58, 34)
+
+[sub_resource type="RectangleShape2D" id="forest_access_area"]
+size = Vector2(176, 64)
+
+[sub_resource type="RectangleShape2D" id="river_access_area"]
+size = Vector2(112, 120)
+
+[sub_resource type="StyleBoxFlat" id="notice_style"]
+bg_color = Color(0.08, 0.11, 0.13, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.82, 0.68, 0.32, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="WorldTest" type="Node2D" unique_id=1606040407]
+script = ExtResource("8_world")
 
 [node name="TileLayers" type="Node2D" parent="." unique_id=930921052]
 
@@ -63,6 +97,7 @@ tile_map_data = PackedByteArray("AAASAAwAAAAMAAQAAAATAAwAAAAMAAQAAAAUAAwAAAAMAAQ
 tile_set = SubResource("tileset_pueblo")
 
 [node name="Props" type="Node2D" parent="." unique_id=566990086]
+y_sort_enabled = true
 
 [node name="Panaderia" type="Sprite2D" parent="Props" unique_id=948447363]
 position = Vector2(225, 215)
@@ -87,6 +122,48 @@ texture = ExtResource("7_arbol")
 [node name="ArbolB" type="Sprite2D" parent="Props" unique_id=1357737826]
 position = Vector2(1210, 100)
 texture = ExtResource("7_arbol")
+
+[node name="CasaGuardia" type="Sprite2D" parent="Props"]
+position = Vector2(820, 160)
+texture = ExtResource("9_casa_guardia")
+
+[node name="PuertaRio" type="Sprite2D" parent="Props"]
+position = Vector2(1215, 555)
+texture = ExtResource("10_puerta")
+
+[node name="CartelDirecciones" type="Sprite2D" parent="Props"]
+position = Vector2(840, 410)
+texture = ExtResource("11_cartel")
+
+[node name="ArbolMedioA" type="Sprite2D" parent="Props"]
+position = Vector2(90, 525)
+texture = ExtResource("12_arbol_m")
+
+[node name="ArbolMedioB" type="Sprite2D" parent="Props"]
+position = Vector2(1160, 460)
+texture = ExtResource("12_arbol_m")
+
+[node name="BancoPlaza" type="Sprite2D" parent="Props"]
+position = Vector2(525, 405)
+texture = ExtResource("13_banco")
+
+[node name="NPCPanadera" type="Sprite2D" parent="Props"]
+position = Vector2(320, 310)
+texture = ExtResource("14_panadera")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 48)
+
+[node name="NPCGuardia" type="Sprite2D" parent="Props"]
+position = Vector2(640, 125)
+texture = ExtResource("15_guardia")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 48)
+
+[node name="NPCNina" type="Sprite2D" parent="Props"]
+position = Vector2(480, 430)
+texture = ExtResource("16_nina")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 48)
 
 [node name="Player" parent="Props" unique_id=1137071166 instance=ExtResource("1_player")]
 position = Vector2(640, 560)
@@ -142,3 +219,59 @@ position = Vector2(640, 360)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Colisiones/StaticBody2D" unique_id=1324899194]
 position = Vector2(-0.5, -280)
 shape = SubResource("RectangleShape2D_tbcmv")
+
+[node name="CasaGuardia" type="StaticBody2D" parent="Colisiones"]
+position = Vector2(820, 174)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisiones/CasaGuardia"]
+shape = SubResource("guard_house_collision")
+
+[node name="PuertaRio" type="StaticBody2D" parent="Colisiones"]
+position = Vector2(1215, 563)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisiones/PuertaRio"]
+shape = SubResource("river_gate_collision")
+
+[node name="Accesos" type="Node2D" parent="."]
+
+[node name="BosqueBloqueado" type="Area2D" parent="Accesos"]
+position = Vector2(640, 118)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Accesos/BosqueBloqueado"]
+shape = SubResource("forest_access_area")
+
+[node name="RioBloqueado" type="Area2D" parent="Accesos"]
+position = Vector2(1180, 555)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Accesos/RioBloqueado"]
+shape = SubResource("river_access_area")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="NoticePanel" type="PanelContainer" parent="HUD"]
+offset_left = 332.0
+offset_top = 34.0
+offset_right = 948.0
+offset_bottom = 108.0
+theme_override_styles/panel = SubResource("notice_style")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/NoticePanel"]
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="NoticeLabel" type="Label" parent="HUD/NoticePanel/MarginContainer"]
+theme_override_colors/font_color = Color(1, 0.94, 0.77, 1)
+theme_override_font_sizes/font_size = 17
+text = ""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoticeTimer" type="Timer" parent="HUD"]
+wait_time = 3.5
+one_shot = true
+
+[connection signal="body_entered" from="Accesos/BosqueBloqueado" to="." method="_on_forest_access_body_entered"]
+[connection signal="body_entered" from="Accesos/RioBloqueado" to="." method="_on_river_access_body_entered"]
+[connection signal="timeout" from="HUD/NoticeTimer" to="." method="_on_notice_timer_timeout"]
