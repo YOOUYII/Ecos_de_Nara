@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" path="res://assets/art/characters/npcs/npc_panadera_idle.png" id="14_panadera"]
 [ext_resource type="Texture2D" path="res://assets/art/characters/npcs/npc_guardia_idle.png" id="15_guardia"]
 [ext_resource type="Texture2D" path="res://assets/art/characters/npcs/npc_nina_idle.png" id="16_nina"]
+[ext_resource type="PackedScene" path="res://scenes/npc/npc.tscn" id="17_npc"]
 
 [sub_resource type="TileSetAtlasSource" id="atlas_pueblo"]
 texture = ExtResource("2_tiles")
@@ -147,20 +148,35 @@ texture = ExtResource("12_arbol_m")
 position = Vector2(525, 405)
 texture = ExtResource("13_banco")
 
-[node name="NPCPanadera" type="Sprite2D" parent="Props"]
+[node name="NPCPanadera" parent="Props" instance=ExtResource("17_npc")]
 position = Vector2(320, 310)
+npc_id = "panadera"
+display_name = "Panadera"
+relationship = 0
+
+[node name="NpcSprite" parent="Props/NPCPanadera" index="0"]
 texture = ExtResource("14_panadera")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 48)
 
-[node name="NPCGuardia" type="Sprite2D" parent="Props"]
+[node name="NPCGuardia" parent="Props" instance=ExtResource("17_npc")]
 position = Vector2(640, 125)
+npc_id = "guardia"
+display_name = "Guardia"
+relationship = 2
+
+[node name="NpcSprite" parent="Props/NPCGuardia" index="0"]
 texture = ExtResource("15_guardia")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 48)
 
-[node name="NPCNina" type="Sprite2D" parent="Props"]
+[node name="NPCNina" parent="Props" instance=ExtResource("17_npc")]
 position = Vector2(480, 430)
+npc_id = "nina"
+display_name = "Niña"
+relationship = 1
+
+[node name="NpcSprite" parent="Props/NPCNina" index="0"]
 texture = ExtResource("16_nina")
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 48)
@@ -275,3 +291,9 @@ one_shot = true
 [connection signal="body_entered" from="Accesos/BosqueBloqueado" to="." method="_on_forest_access_body_entered"]
 [connection signal="body_entered" from="Accesos/RioBloqueado" to="." method="_on_river_access_body_entered"]
 [connection signal="timeout" from="HUD/NoticeTimer" to="." method="_on_notice_timer_timeout"]
+[connection signal="interaction_requested" from="Props/NPCPanadera" to="." method="_on_npc_interaction_requested"]
+[connection signal="interaction_requested" from="Props/NPCGuardia" to="." method="_on_npc_interaction_requested"]
+[connection signal="interaction_requested" from="Props/NPCNina" to="." method="_on_npc_interaction_requested"]
+[connection signal="interaction_cancelled" from="Props/NPCPanadera" to="." method="_on_npc_interaction_cancelled"]
+[connection signal="interaction_cancelled" from="Props/NPCGuardia" to="." method="_on_npc_interaction_cancelled"]
+[connection signal="interaction_cancelled" from="Props/NPCNina" to="." method="_on_npc_interaction_cancelled"]

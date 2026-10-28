@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/npc/npc.gd" id="1_npc"]
+
+[sub_resource type="CircleShape2D" id="interaction_range"]
+radius = 52.0
+
+[node name="NPC" type="Area2D"]
+script = ExtResource("1_npc")
+
+[node name="NpcSprite" type="Sprite2D" parent="."]
+
+[node name="InteractionPrompt" type="Label" parent="."]
+z_index = 2
+offset_left = -42.0
+offset_top = -66.0
+offset_right = 42.0
+offset_bottom = -42.0
+theme_override_colors/font_color = Color(1, 0.94, 0.77, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.11, 0.13, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 16
+text = "E - Hablar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InteractionRange" type="CollisionShape2D" parent="."]
+shape = SubResource("interaction_range")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
