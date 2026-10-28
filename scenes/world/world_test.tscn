@@ -67,6 +67,9 @@ size = Vector2(58, 34)
 [sub_resource type="RectangleShape2D" id="forest_access_area"]
 size = Vector2(176, 64)
 
+[sub_resource type="RectangleShape2D" id="bosque_transition_area"]
+size = Vector2(160, 32)
+
 [sub_resource type="RectangleShape2D" id="river_access_area"]
 size = Vector2(112, 120)
 
@@ -266,6 +269,12 @@ position = Vector2(1180, 555)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Accesos/RioBloqueado"]
 shape = SubResource("river_access_area")
 
+[node name="TransicionBosque" type="Area2D" parent="Accesos"]
+position = Vector2(640, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Accesos/TransicionBosque"]
+shape = SubResource("bosque_transition_area")
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="NoticePanel" type="PanelContainer" parent="HUD"]
@@ -309,6 +318,7 @@ vertical_alignment = 1
 
 [connection signal="body_entered" from="Accesos/BosqueBloqueado" to="." method="_on_forest_access_body_entered"]
 [connection signal="body_entered" from="Accesos/RioBloqueado" to="." method="_on_river_access_body_entered"]
+[connection signal="body_entered" from="Accesos/TransicionBosque" to="." method="_on_bosque_transition_body_entered"]
 [connection signal="timeout" from="HUD/NoticeTimer" to="." method="_on_notice_timer_timeout"]
 [connection signal="interaction_requested" from="Props/NPCPanadera" to="." method="_on_npc_interaction_requested"]
 [connection signal="interaction_requested" from="Props/NPCGuardia" to="." method="_on_npc_interaction_requested"]

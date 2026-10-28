@@ -11,6 +11,7 @@ extends Node2D
 
 func _ready() -> void:
 	StoryProgress.current_zone = StoryProgress.ZONE_PUEBLO
+	DialogueManager.load_zone_dialogues("pueblo")
 	notice_panel.hide()
 
 	Letter.fragment_translated.connect(_on_fragment_translated)
@@ -30,6 +31,12 @@ func _on_forest_access_body_entered(body: Node2D) -> void:
 func _on_river_access_body_entered(body: Node2D) -> void:
 	if body is Player and not StoryProgress.can_enter(StoryProgress.ZONE_RIO):
 		show_access_notice("La ruta del río está cerrada.\nPrimero debes conseguir autorización.")
+
+
+## Transición al bosque cuando el jugador cruza al norte
+func _on_bosque_transition_body_entered(body: Node2D) -> void:
+	if body is Player and StoryProgress.can_enter(StoryProgress.ZONE_BOSQUE):
+		GameManager.change_zone("bosque", Vector2(640, 640), "up")
 
 
 func _on_npc_interaction_requested(npc: Npc) -> void:

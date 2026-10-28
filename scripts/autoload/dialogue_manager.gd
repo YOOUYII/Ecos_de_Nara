@@ -3,11 +3,12 @@ extends Node
 ## Autoload del sistema de diálogo.
 ## Lee los datos desde JSON, evalúa variantes por relación, flags, misiones e items,
 ## y aplica efectos narrativos y de vocabulario al cerrar.
+## Soporta carga dinámica de diálogos por zona.
 
 signal dialogue_opened(npc: Npc)
 signal dialogue_closed
 
-const DIALOGUE_DATA_PATH := "res://data/dialogues/pueblo.json"
+const BASE_DIALOGUE_PATH := "res://data/dialogues/pueblo.json"
 const DIALOGUE_BOX_SCENE := preload("res://scenes/ui/dialogue_box.tscn")
 
 var is_dialogue_open := false
@@ -17,14 +18,25 @@ var current_effects: Array = []
 var current_line_index := 0
 var current_portrait_path := ""
 var dialogue_data: Dictionary = {}
+var zone_dialogue_data: Dictionary = {}
 var dialogue_box: DialogueBox
 
 
 func _ready() -> void:
-	_load_dialogue_data()
+	_load_dialogue_data(BASE_DIALOGUE_PATH, true)
 	dialogue_box = DIALOGUE_BOX_SCENE.instantiate()
 	add_child(dialogue_box)
 	dialogue_box.advance_requested.connect(advance_dialogue)
+
+
+## Carga diálogos adicionales de una zona específica.
+## Se pueden buscar NPCs primero en zone_dialogue_data, luego en dialogue_data.
+func load_zone_dialogues(zone_name: String) -> void:
+	var path := "res://data/dialogues/%s.json" % zone_name
+	if not FileAccess.file_exists(path):
+		zone_dialogue_data = {}
+		return
+	_load_dialogue_data(path, false)
 
 
 func start_dialogue(npc: Npc) -> bool:
@@ -128,20 +140,26 @@ func _show_current_line() -> void:
 	)
 
 
-func _load_dialogue_data() -> void:
-	var file := FileAccess.open(DIALOGUE_DATA_PATH, FileAccess.READ)
+func _load_dialogue_data(path: String, is_base: bool) -> void:
+	var file := FileAccess.open(path, FileAccess.READ)
 	if file == null:
-		push_error("No se encontró el archivo de diálogos: %s" % DIALOGUE_DATA_PATH)
+		push_error("No se encontró el archivo de diálogos: %s" % path)
 		return
 	var parsed_data = JSON.parse_string(file.get_as_text())
 	if parsed_data is Dictionary:
-		dialogue_data = parsed_data
+		if is_base:
+			dialogue_data = parsed_data
+		else:
+			zone_dialogue_data = parsed_data
 	else:
-		push_error("El archivo de diálogos no contiene un objeto JSON válido.")
+		push_error("El archivo de diálogos no contiene un objeto JSON válido: %s" % path)
 
 
 func _get_matching_variant(npc: Npc) -> Dictionary:
-	var npc_data: Dictionary = dialogue_data.get("dialogues", {}).get(npc.npc_id, {})
+	# Buscar primero en los diálogos de la zona actual, luego en los base (pueblo)
+	var npc_data: Dictionary = zone_dialogue_data.get("dialogues", {}).get(npc.npc_id, {})
+	if npc_data.is_empty():
+		npc_data = dialogue_data.get("dialogues", {}).get(npc.npc_id, {})
 	for variant in npc_data.get("variants", []):
 		if _condition_matches(variant.get("condition", {}), npc):
 			return variant

@@ -16,6 +16,11 @@ func _ready() -> void:
 			if frame_texture:
 				frame_texture.atlas = character_sheet
 
+	# Posicionar al jugador en el punto de spawn si viene de otra zona
+	if GameManager.spawn_position != Vector2.ZERO:
+		global_position = GameManager.spawn_position
+		GameManager.spawn_position = Vector2.ZERO
+
 func _physics_process(_delta: float) -> void:
 	if DialogueManager.is_dialogue_open or Notebook.is_open or Letter.is_open:
 		velocity = Vector2.ZERO

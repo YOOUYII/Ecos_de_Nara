@@ -48,13 +48,17 @@ func register_effects(effects: Array) -> void:
 			var choices: Array[String] = []
 			for choice in effect.get("choices", []):
 				choices.append(str(choice))
+			var is_confirmed_val: bool = bool(effect.get("confirmed", false)) or (str(effect.get("status", "")) == "confirmed")
+			var answer_val := str(effect.get("answer", ""))
+			if answer_val.is_empty():
+				answer_val = str(effect.get("meaning", ""))
 			add_or_update_entry(
 				str(effect.get("word", "")),
 				str(effect.get("meaning", "")),
 				str(effect.get("context", "")),
-				bool(effect.get("confirmed", false)),
+				is_confirmed_val,
 				choices,
-				str(effect.get("answer", ""))
+				answer_val
 			)
 
 

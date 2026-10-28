@@ -1,0 +1,80 @@
+# Tileset bosque (Ecos de Nara) - 32x32
+# Cuadricula uniforme de 32x32 px. Formato: nombre  columna,fila  (x,y en px)
+# Los tiles marcados [overlay] tienen fondo transparente y se dibujan sobre un suelo.
+
+sendero_NW                   0,0   (0,0)
+sendero_N                    1,0   (32,0)
+sendero_NE                   2,0   (64,0)
+sendero_iNW                  3,0   (96,0)
+musgo_NW                     4,0   (128,0)
+musgo_N                      5,0   (160,0)
+musgo_NE                     6,0   (192,0)
+musgo_iNW                    7,0   (224,0)
+hierba_a_bosque_NW           8,0   (256,0)
+hierba_a_bosque_N            9,0   (288,0)
+hierba_a_bosque_NE           10,0   (320,0)
+hierba_a_bosque_iNW          11,0   (352,0)
+claro_NW                     12,0   (384,0)
+claro_N                      13,0   (416,0)
+claro_NE                     14,0   (448,0)
+claro_iNW                    15,0   (480,0)
+sendero_W                    0,1   (0,32)
+sendero_C                    1,1   (32,32)
+sendero_E                    2,1   (64,32)
+sendero_iNE                  3,1   (96,32)
+musgo_W                      4,1   (128,32)
+musgo_C                      5,1   (160,32)
+musgo_E                      6,1   (192,32)
+musgo_iNE                    7,1   (224,32)
+hierba_a_bosque_W            8,1   (256,32)
+hierba_a_bosque_C            9,1   (288,32)
+hierba_a_bosque_E            10,1   (320,32)
+hierba_a_bosque_iNE          11,1   (352,32)
+claro_W                      12,1   (384,32)
+claro_C                      13,1   (416,32)
+claro_E                      14,1   (448,32)
+claro_iNE                    15,1   (480,32)
+sendero_SW                   0,2   (0,64)
+sendero_S                    1,2   (32,64)
+sendero_SE                   2,2   (64,64)
+sendero_iSW                  3,2   (96,64)
+musgo_SW                     4,2   (128,64)
+musgo_S                      5,2   (160,64)
+musgo_SE                     6,2   (192,64)
+musgo_iSW                    7,2   (224,64)
+hierba_a_bosque_SW           8,2   (256,64)
+hierba_a_bosque_S            9,2   (288,64)
+hierba_a_bosque_SE           10,2   (320,64)
+hierba_a_bosque_iSW          11,2   (352,64)
+claro_SW                     12,2   (384,64)
+claro_S                      13,2   (416,64)
+claro_SE                     14,2   (448,64)
+claro_iSW                    15,2   (480,64)
+sendero_iSE                  3,3   (96,96)
+musgo_iSE                    7,3   (224,96)
+hierba_a_bosque_iSE          11,3   (352,96)
+claro_iSE                    15,3   (480,96)
+suelo_1                      0,4   (0,128)
+suelo_2                      1,4   (32,128)
+suelo_3                      2,4   (64,128)
+suelo_4                      3,4   (96,128)
+musgo_1                      4,4   (128,128)
+musgo_2                      5,4   (160,128)
+hojas_1                      6,4   (192,128)
+hojas_2                      7,4   (224,128)
+sendero_1                    8,4   (256,128)
+sendero_2                    9,4   (288,128)
+tierra_oscura_1              10,4   (320,128)
+tierra_oscura_2              11,4   (352,128)
+raices_1                     0,5   (0,160) [overlay]
+helecho                      1,5   (32,160) [overlay]
+setas                        2,5   (64,160) [overlay]
+hierba_alta_a                3,5   (96,160) [overlay]
+roca_pequena                 4,5   (128,160) [overlay]
+roca_mediana                 5,5   (160,160) [overlay]
+tronco_izq                   6,5   (192,160) [overlay]
+tronco_der                   7,5   (224,160) [overlay]
+tocon                        8,5   (256,160) [overlay]
+ramas                        9,5   (288,160) [overlay]
+flores_bosque                10,5   (320,160) [overlay]
+niebla_ligera                11,5   (352,160) [overlay]
