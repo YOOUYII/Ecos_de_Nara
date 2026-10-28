@@ -1,0 +1,106 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/notebook_panel.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/art/ui/ui_libreta_panel.png" id="2_panel"]
+[ext_resource type="Texture2D" path="res://assets/art/ui/ui_libreta_slot_entrada_9slice.png" id="3_slot"]
+[ext_resource type="Texture2D" path="res://assets/art/ui/ui_icono_libreta.png" id="4_icon"]
+
+[sub_resource type="StyleBoxTexture" id="entry_style"]
+texture = ExtResource("3_slot")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="NotebookPanel" type="CanvasLayer"]
+layer = 11
+script = ExtResource("1_script")
+entry_style = SubResource("entry_style")
+
+[node name="NotebookRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="NotebookRoot"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 100.0
+offset_right = 1040.0
+offset_bottom = 620.0
+mouse_filter = 0
+
+[node name="Artwork" type="TextureRect" parent="NotebookRoot/Panel"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_panel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="NotebookRoot/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 56
+theme_override_constants/margin_top = 42
+theme_override_constants/margin_right = 56
+theme_override_constants/margin_bottom = 34
+
+[node name="Content" type="VBoxContainer" parent="NotebookRoot/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleRow" type="HBoxContainer" parent="NotebookRoot/Panel/MarginContainer/Content"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 10
+
+[node name="Icon" type="TextureRect" parent="NotebookRoot/Panel/MarginContainer/Content/TitleRow"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("4_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="NotebookRoot/Panel/MarginContainer/Content/TitleRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.11, 0.05, 1)
+theme_override_font_sizes/font_size = 29
+text = "Libreta de vocabulario"
+
+[node name="Hint" type="Label" parent="NotebookRoot/Panel/MarginContainer/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.31, 0.22, 0.12, 1)
+theme_override_font_sizes/font_size = 15
+text = "Observa el contexto y anota una hipótesis antes de confirmar el significado."
+horizontal_alignment = 1
+
+[node name="FeedbackLabel" type="Label" parent="NotebookRoot/Panel/MarginContainer/Content"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.16, 0.38, 0.2, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="EntriesScroll" type="ScrollContainer" parent="NotebookRoot/Panel/MarginContainer/Content"]
+custom_minimum_size = Vector2(0, 305)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EntriesContainer" type="VBoxContainer" parent="NotebookRoot/Panel/MarginContainer/Content/EntriesScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="CloseButton" type="Button" parent="NotebookRoot/Panel/MarginContainer/Content"]
+custom_minimum_size = Vector2(180, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 16
+text = "Cerrar  [N]"

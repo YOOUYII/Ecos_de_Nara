@@ -5,8 +5,11 @@
         {
           "condition": { "relationship": "friendly" },
           "context": "La panadera señala el pan recién horneado de su puesto.",
-          "portrait": "res://assets/art/characters/npcs/npc_panadera_idle.png",
-          "effects": [],
+          "portrait": "res://assets/art/portraits/panadera_amable.png",
+          "effects": [
+            { "type": "vocabulary", "word": "Guten Morgen", "meaning": "buenos días", "context": "La panadera te saluda al empezar la mañana.", "choices": ["buenos días", "gracias", "buenas noches"], "answer": "buenos días", "confirmed": false },
+            { "type": "vocabulary", "word": "Brot", "meaning": "pan", "context": "La panadera ofrece pan caliente mientras pronuncia la palabra.", "choices": ["pan", "agua", "bosque"], "answer": "pan", "confirmed": false }
+          ],
           "lines": [
             "Guten Morgen! Ich bin die Bäckerin.",
             "Das Brot ist warm. Möchtest du Brot?"
@@ -15,8 +18,11 @@
         {
           "condition": {},
           "context": "La panadera continúa ordenando sus panes.",
-          "portrait": "res://assets/art/characters/npcs/npc_panadera_idle.png",
-          "effects": [],
+          "portrait": "res://assets/art/portraits/panadera_amable.png",
+          "effects": [
+            { "type": "vocabulary", "word": "Hallo", "meaning": "hola", "context": "La panadera inicia la conversación con un saludo.", "choices": ["hola", "adiós", "gracias"], "answer": "hola", "confirmed": false },
+            { "type": "vocabulary", "word": "Wasser", "meaning": "agua", "context": "La panadera menciona el agua junto al pan.", "choices": ["agua", "llave", "camino"], "answer": "agua", "confirmed": false }
+          ],
           "lines": [
             "Hallo. Das ist meine Bäckerei.",
             "Brot und Wasser sind hier."
@@ -29,8 +35,11 @@
         {
           "condition": { "relationship": "wary" },
           "context": "El guardia mantiene la salida del bosque cerrada.",
-          "portrait": "res://assets/art/characters/npcs/npc_guardia_idle.png",
-          "effects": [],
+          "portrait": "res://assets/art/portraits/guardia_desconfiado.png",
+          "effects": [
+            { "type": "vocabulary", "word": "Halt", "meaning": "alto", "context": "El guardia levanta la mano y bloquea tu paso.", "choices": ["alto", "ven", "gracias"], "answer": "alto", "confirmed": false },
+            { "type": "vocabulary", "word": "Wald", "meaning": "bosque", "context": "El guardia señala el camino cerrado hacia los árboles.", "choices": ["bosque", "río", "pan"], "answer": "bosque", "confirmed": false }
+          ],
           "lines": [
             "Halt! Wer bist du?",
             "Der Wald ist heute geschlossen."
@@ -39,8 +48,10 @@
         {
           "condition": {},
           "context": "El guardia observa el camino al bosque.",
-          "portrait": "res://assets/art/characters/npcs/npc_guardia_idle.png",
-          "effects": [],
+          "portrait": "res://assets/art/portraits/guardia_desconfiado.png",
+          "effects": [
+            { "type": "vocabulary", "word": "Weg", "meaning": "camino", "context": "El guardia señala una dirección con la mano.", "choices": ["camino", "casa", "fuente"], "answer": "camino", "confirmed": false }
+          ],
           "lines": [
             "Guten Tag. Der Weg ist dort."
           ]
@@ -52,8 +63,11 @@
         {
           "condition": { "relationship": "neutral" },
           "context": "La niña mira la fuente de la plaza con curiosidad.",
-          "portrait": "res://assets/art/characters/npcs/npc_nina_idle.png",
-          "effects": [],
+          "portrait": "res://assets/art/portraits/nina_curiosa.png",
+          "effects": [
+            { "type": "vocabulary", "word": "Quelle", "meaning": "fuente", "context": "Leni mira la fuente de agua de la plaza.", "choices": ["fuente", "puerta", "pan"], "answer": "fuente", "confirmed": false },
+            { "type": "vocabulary", "word": "Mitte", "meaning": "centro", "context": "Leni indica que la fuente está en el centro de la plaza.", "choices": ["centro", "bosque", "casa"], "answer": "centro", "confirmed": false }
+          ],
           "lines": [
             "Hallo! Ich heiße Leni.",
             "Die Quelle ist in der Mitte."
@@ -62,8 +76,10 @@
         {
           "condition": {},
           "context": "La niña se queda cerca de la plaza.",
-          "portrait": "res://assets/art/characters/npcs/npc_nina_idle.png",
-          "effects": [],
+          "portrait": "res://assets/art/portraits/nina_curiosa.png",
+          "effects": [
+            { "type": "vocabulary", "word": "schön", "meaning": "bonito/a", "context": "Leni sonríe al mirar la fuente.", "choices": ["bonito/a", "cerrado", "frío/a"], "answer": "bonito/a", "confirmed": false }
+          ],
           "lines": [
             "Hallo! Die Quelle ist schön."
           ]

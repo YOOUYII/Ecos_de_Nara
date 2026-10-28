@@ -15,14 +15,20 @@ enum Relationship {
 @export var npc_id := ""
 @export var display_name := "Habitante"
 @export var relationship := Relationship.NEUTRAL
+@export var gesture_sheet: Texture2D
 
 var player_in_range := false
 
 @onready var interaction_prompt: Label = $InteractionPrompt
+@onready var npc_sprite: Sprite2D = $NpcSprite
+@onready var gesture_sprite: AnimatedSprite2D = $GestureSprite
 
 
 func _ready() -> void:
 	interaction_prompt.hide()
+	gesture_sprite.hide()
+	if gesture_sheet:
+		_configure_gesture()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -44,3 +50,30 @@ func _on_body_exited(body: Node2D) -> void:
 		interaction_prompt.hide()
 		if was_in_range:
 			interaction_cancelled.emit(self)
+
+
+func play_context_gesture() -> void:
+	if gesture_sheet == null:
+		return
+	npc_sprite.hide()
+	gesture_sprite.show()
+	gesture_sprite.play(&"gesture")
+
+
+func stop_context_gesture() -> void:
+	gesture_sprite.stop()
+	gesture_sprite.hide()
+	npc_sprite.show()
+
+
+func _configure_gesture() -> void:
+	var frames := SpriteFrames.new()
+	frames.add_animation(&"gesture")
+	frames.set_animation_speed(&"gesture", 6.0)
+	frames.set_animation_loop(&"gesture", true)
+	for frame_index in 4:
+		var frame := AtlasTexture.new()
+		frame.atlas = gesture_sheet
+		frame.region = Rect2(frame_index * 32, 0, 32, 48)
+		frames.add_frame(&"gesture", frame)
+	gesture_sprite.sprite_frames = frames

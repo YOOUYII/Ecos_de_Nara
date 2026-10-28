@@ -10,6 +10,8 @@ script = ExtResource("1_npc")
 
 [node name="NpcSprite" type="Sprite2D" parent="."]
 
+[node name="GestureSprite" type="AnimatedSprite2D" parent="."]
+
 [node name="InteractionPrompt" type="Label" parent="."]
 z_index = 2
 offset_left = -42.0

@@ -10,6 +10,7 @@ const DIALOGUE_DATA_PATH := "res://data/dialogues/pueblo.json"
 var is_dialogue_open := false
 var current_npc: Npc
 var current_lines: Array = []
+var current_effects: Array = []
 var current_line_index := 0
 var current_portrait_path := ""
 var dialogue_data: Dictionary = {}
@@ -33,12 +34,14 @@ func start_dialogue(npc: Npc) -> bool:
 	current_npc = npc
 	# duplicate() evita vaciar las líneas guardadas en dialogue_data al cerrar.
 	current_lines = (variant.get("lines", []) as Array).duplicate()
+	current_effects = (variant.get("effects", []) as Array).duplicate(true)
 	current_portrait_path = variant.get("portrait", "")
 	current_line_index = 0
 	if current_lines.is_empty() or current_portrait_path.is_empty():
 		return false
 
 	is_dialogue_open = true
+	current_npc.play_context_gesture()
 	_show_current_line()
 	return true
 
@@ -57,8 +60,11 @@ func close_dialogue() -> void:
 	if not is_dialogue_open:
 		return
 	is_dialogue_open = false
+	current_npc.stop_context_gesture()
+	Notebook.register_effects(current_effects)
 	current_npc = null
 	current_lines.clear()
+	current_effects.clear()
 	dialogue_box.hide_dialogue()
 	dialogue_closed.emit()
 

@@ -27,9 +27,5 @@ func hide_dialogue() -> void:
 	panel.hide()
 
 
-func _create_portrait_texture(portrait_path: String) -> AtlasTexture:
-	var portrait_texture := AtlasTexture.new()
-	portrait_texture.atlas = load(portrait_path)
-	# Los sprites provisionales usan una primera celda de 32 x 48 px.
-	portrait_texture.region = Rect2(0, 0, 32, 48)
-	return portrait_texture
+func _create_portrait_texture(portrait_path: String) -> Texture2D:
+	return load(portrait_path) as Texture2D

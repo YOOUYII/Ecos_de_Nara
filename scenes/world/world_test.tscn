@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" path="res://assets/art/characters/npcs/npc_guardia_idle.png" id="15_guardia"]
 [ext_resource type="Texture2D" path="res://assets/art/characters/npcs/npc_nina_idle.png" id="16_nina"]
 [ext_resource type="PackedScene" path="res://scenes/npc/npc.tscn" id="17_npc"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/npcs/npc_panadera_gesto_ofrecer.png" id="18_panadera_gesto"]
+[ext_resource type="Texture2D" path="res://assets/art/characters/npcs/npc_guardia_gesto_negar.png" id="19_guardia_gesto"]
 
 [sub_resource type="TileSetAtlasSource" id="atlas_pueblo"]
 texture = ExtResource("2_tiles")
@@ -153,6 +155,7 @@ position = Vector2(320, 310)
 npc_id = "panadera"
 display_name = "Panadera"
 relationship = 0
+gesture_sheet = ExtResource("18_panadera_gesto")
 
 [node name="NpcSprite" parent="Props/NPCPanadera" index="0"]
 texture = ExtResource("14_panadera")
@@ -164,6 +167,7 @@ position = Vector2(640, 125)
 npc_id = "guardia"
 display_name = "Guardia"
 relationship = 2
+gesture_sheet = ExtResource("19_guardia_gesto")
 
 [node name="NpcSprite" parent="Props/NPCGuardia" index="0"]
 texture = ExtResource("15_guardia")

@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GameManager="*res://scripts/autoload/game_manager.gd"
 StoryProgress="*res://scripts/autoload/story_progress.gd"
 DialogueManager="*res://scripts/autoload/dialogue_manager.gd"
+Notebook="*res://scripts/autoload/notebook.gd"
 
 [display]
 

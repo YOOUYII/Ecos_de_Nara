@@ -17,7 +17,7 @@ func _ready() -> void:
 				frame_texture.atlas = character_sheet
 
 func _physics_process(_delta: float) -> void:
-	if DialogueManager.is_dialogue_open:
+	if DialogueManager.is_dialogue_open or Notebook.is_open:
 		velocity = Vector2.ZERO
 		_update_visual(Vector2.ZERO)
 		return
