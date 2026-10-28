@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/dialogue_box.gd" id="1_dialogue_box"]
+
+[sub_resource type="StyleBoxFlat" id="dialogue_panel_style"]
+bg_color = Color(0.06, 0.08, 0.11, 0.96)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.82, 0.68, 0.32, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="DialogueBox" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_dialogue_box")
+
+[node name="DialogueRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="DialogueRoot"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 494.0
+offset_right = 1184.0
+offset_bottom = 680.0
+theme_override_styles/panel = SubResource("dialogue_panel_style")
+mouse_filter = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueRoot/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 14
+
+[node name="Content" type="HBoxContainer" parent="DialogueRoot/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Portrait" type="TextureRect" parent="DialogueRoot/Panel/MarginContainer/Content"]
+custom_minimum_size = Vector2(92, 120)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextColumn" type="VBoxContainer" parent="DialogueRoot/Panel/MarginContainer/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 7
+
+[node name="SpeakerLabel" type="Label" parent="DialogueRoot/Panel/MarginContainer/Content/TextColumn"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.79, 0.37, 1)
+theme_override_font_sizes/font_size = 21
+text = "Habitante"
+
+[node name="DialogueLabel" type="Label" parent="DialogueRoot/Panel/MarginContainer/Content/TextColumn"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.96, 0.95, 0.9, 1)
+theme_override_font_sizes/font_size = 23
+autowrap_mode = 2
+
+[node name="NextButton" type="Button" parent="DialogueRoot/Panel/MarginContainer/Content/TextColumn"]
+custom_minimum_size = Vector2(180, 34)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 16
+text = "Continuar  [E]"

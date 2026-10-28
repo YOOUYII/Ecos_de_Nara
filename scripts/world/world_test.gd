@@ -6,9 +6,6 @@ extends Node2D
 @onready var notice_label: Label = $HUD/NoticePanel/MarginContainer/NoticeLabel
 @onready var notice_timer: Timer = $HUD/NoticeTimer
 
-var active_npc: Npc
-
-
 func _ready() -> void:
 	StoryProgress.current_zone = StoryProgress.ZONE_PUEBLO
 	notice_panel.hide()
@@ -25,27 +22,15 @@ func _on_river_access_body_entered(body: Node2D) -> void:
 
 
 func _on_npc_interaction_requested(npc: Npc) -> void:
-	var reaction := ""
-	match npc.relationship:
-		Npc.Relationship.FRIENDLY:
-			reaction = "Te observa con curiosidad."
-		Npc.Relationship.WARY:
-			reaction = "Te vigila con desconfianza."
-		_:
-			reaction = "Parece querer saber quién eres."
-	active_npc = npc
-	_show_notice("%s: %s" % [npc.display_name, reaction])
+	DialogueManager.start_dialogue(npc)
 
 
 func _on_npc_interaction_cancelled(npc: Npc) -> void:
-	if active_npc == npc:
-		notice_timer.stop()
-		notice_panel.hide()
-		active_npc = null
+	if DialogueManager.is_dialogue_open and DialogueManager.current_npc == npc:
+		DialogueManager.close_dialogue()
 
 
 func show_access_notice(message: String) -> void:
-	active_npc = null
 	_show_notice(message)
 
 
@@ -57,4 +42,3 @@ func _show_notice(message: String) -> void:
 
 func _on_notice_timer_timeout() -> void:
 	notice_panel.hide()
-	active_npc = null

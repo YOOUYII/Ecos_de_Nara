@@ -17,6 +17,10 @@ func _ready() -> void:
 				frame_texture.atlas = character_sheet
 
 func _physics_process(_delta: float) -> void:
+	if DialogueManager.is_dialogue_open:
+		velocity = Vector2.ZERO
+		_update_visual(Vector2.ZERO)
+		return
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * speed
 	move_and_slide()

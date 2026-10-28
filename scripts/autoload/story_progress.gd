@@ -12,7 +12,12 @@ var unlocked_zones := {
 	ZONE_BOSQUE: false,
 	ZONE_RIO: false,
 }
+var flags: Dictionary = {}
 
 
 func can_enter(zone: String) -> bool:
 	return unlocked_zones.get(zone, false)
+
+
+func has_flag(flag: String) -> bool:
+	return flags.get(flag, false)

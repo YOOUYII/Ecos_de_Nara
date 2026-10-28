@@ -1,0 +1,74 @@
+{
+  "dialogues": {
+    "panadera": {
+      "variants": [
+        {
+          "condition": { "relationship": "friendly" },
+          "context": "La panadera señala el pan recién horneado de su puesto.",
+          "portrait": "res://assets/art/characters/npcs/npc_panadera_idle.png",
+          "effects": [],
+          "lines": [
+            "Guten Morgen! Ich bin die Bäckerin.",
+            "Das Brot ist warm. Möchtest du Brot?"
+          ]
+        },
+        {
+          "condition": {},
+          "context": "La panadera continúa ordenando sus panes.",
+          "portrait": "res://assets/art/characters/npcs/npc_panadera_idle.png",
+          "effects": [],
+          "lines": [
+            "Hallo. Das ist meine Bäckerei.",
+            "Brot und Wasser sind hier."
+          ]
+        }
+      ]
+    },
+    "guardia": {
+      "variants": [
+        {
+          "condition": { "relationship": "wary" },
+          "context": "El guardia mantiene la salida del bosque cerrada.",
+          "portrait": "res://assets/art/characters/npcs/npc_guardia_idle.png",
+          "effects": [],
+          "lines": [
+            "Halt! Wer bist du?",
+            "Der Wald ist heute geschlossen."
+          ]
+        },
+        {
+          "condition": {},
+          "context": "El guardia observa el camino al bosque.",
+          "portrait": "res://assets/art/characters/npcs/npc_guardia_idle.png",
+          "effects": [],
+          "lines": [
+            "Guten Tag. Der Weg ist dort."
+          ]
+        }
+      ]
+    },
+    "nina": {
+      "variants": [
+        {
+          "condition": { "relationship": "neutral" },
+          "context": "La niña mira la fuente de la plaza con curiosidad.",
+          "portrait": "res://assets/art/characters/npcs/npc_nina_idle.png",
+          "effects": [],
+          "lines": [
+            "Hallo! Ich heiße Leni.",
+            "Die Quelle ist in der Mitte."
+          ]
+        },
+        {
+          "condition": {},
+          "context": "La niña se queda cerca de la plaza.",
+          "portrait": "res://assets/art/characters/npcs/npc_nina_idle.png",
+          "effects": [],
+          "lines": [
+            "Hallo! Die Quelle ist schön."
+          ]
+        }
+      ]
+    }
+  }
+}
