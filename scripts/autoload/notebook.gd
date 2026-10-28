@@ -62,6 +62,15 @@ func get_entries() -> Array[VocabularyEntry]:
 	return entries
 
 
+func get_confirmed_words() -> Array[String]:
+	var confirmed: Array[String] = []
+	for entry in entries_by_key.values():
+		var voc := entry as VocabularyEntry
+		if voc and voc.is_confirmed:
+			confirmed.append(voc.german.to_lower().strip_edges())
+	return confirmed
+
+
 func confirm_entry(word: String) -> void:
 	var entry := entries_by_key.get(word.to_lower().strip_edges()) as VocabularyEntry
 	if entry:
@@ -83,7 +92,7 @@ func try_confirm_entry(word: String, guess: String) -> void:
 
 
 func open_notebook() -> void:
-	if DialogueManager.is_dialogue_open:
+	if DialogueManager.is_dialogue_open or Letter.is_open:
 		return
 	is_open = true
 	last_feedback = ""
@@ -96,7 +105,7 @@ func close_notebook() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("notebook") and not event.is_echo() and not DialogueManager.is_dialogue_open:
+	if event.is_action_pressed("notebook") and not event.is_echo() and not DialogueManager.is_dialogue_open and not Letter.is_open:
 		if is_open:
 			close_notebook()
 		else:

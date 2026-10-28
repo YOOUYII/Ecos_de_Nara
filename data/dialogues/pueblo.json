@@ -4,21 +4,22 @@
       "variants": [
         {
           "condition": { "relationship": "friendly" },
-          "context": "La panadera señala el pan recién horneado de su puesto.",
-          "portrait": "res://assets/art/portraits/panadera_amable.png",
+          "context": "La panadera señala el pan recién horneado y una jarra de agua fresca en su puesto.",
+          "portrait": "res://assets/art/portraits/anim/panadera_amable_talk_3f.png",
           "effects": [
-            { "type": "vocabulary", "word": "Guten Morgen", "meaning": "buenos días", "context": "La panadera te saluda al empezar la mañana.", "choices": ["buenos días", "gracias", "buenas noches"], "answer": "buenos días", "confirmed": false },
-            { "type": "vocabulary", "word": "Brot", "meaning": "pan", "context": "La panadera ofrece pan caliente mientras pronuncia la palabra.", "choices": ["pan", "agua", "bosque"], "answer": "pan", "confirmed": false }
+            { "type": "vocabulary", "word": "Guten Morgen", "meaning": "buenos días", "context": "La panadera te saluda amablemente.", "choices": ["buenos días", "gracias", "buenas noches"], "answer": "buenos días", "confirmed": false },
+            { "type": "vocabulary", "word": "Brot", "meaning": "pan", "context": "La panadera ofrece pan caliente mientras pronuncia la palabra.", "choices": ["pan", "agua", "bosque"], "answer": "pan", "confirmed": false },
+            { "type": "vocabulary", "word": "Wasser", "meaning": "agua", "context": "La panadera te ofrece agua fresca de su jarra.", "choices": ["agua", "llave", "camino"], "answer": "agua", "confirmed": false }
           ],
           "lines": [
             "Guten Morgen! Ich bin die Bäckerin.",
-            "Das Brot ist warm. Möchtest du Brot?"
+            "Das Brot ist warm und hier ist frisches Wasser."
           ]
         },
         {
           "condition": {},
           "context": "La panadera continúa ordenando sus panes.",
-          "portrait": "res://assets/art/portraits/panadera_amable.png",
+          "portrait": "res://assets/art/portraits/anim/panadera_amable_talk_3f.png",
           "effects": [
             { "type": "vocabulary", "word": "Hallo", "meaning": "hola", "context": "La panadera inicia la conversación con un saludo.", "choices": ["hola", "adiós", "gracias"], "answer": "hola", "confirmed": false },
             { "type": "vocabulary", "word": "Wasser", "meaning": "agua", "context": "La panadera menciona el agua junto al pan.", "choices": ["agua", "llave", "camino"], "answer": "agua", "confirmed": false }
@@ -34,21 +35,23 @@
       "variants": [
         {
           "condition": { "relationship": "wary" },
-          "context": "El guardia mantiene la salida del bosque cerrada.",
-          "portrait": "res://assets/art/portraits/guardia_desconfiado.png",
+          "context": "El guardia mantiene la salida del bosque cerrada pero señala el camino del pueblo.",
+          "portrait": "res://assets/art/portraits/anim/guardia_desconfiado_talk_3f.png",
           "effects": [
             { "type": "vocabulary", "word": "Halt", "meaning": "alto", "context": "El guardia levanta la mano y bloquea tu paso.", "choices": ["alto", "ven", "gracias"], "answer": "alto", "confirmed": false },
-            { "type": "vocabulary", "word": "Wald", "meaning": "bosque", "context": "El guardia señala el camino cerrado hacia los árboles.", "choices": ["bosque", "río", "pan"], "answer": "bosque", "confirmed": false }
+            { "type": "vocabulary", "word": "Wald", "meaning": "bosque", "context": "El guardia señala el camino cerrado hacia los árboles.", "choices": ["bosque", "río", "pan"], "answer": "bosque", "confirmed": false },
+            { "type": "vocabulary", "word": "Weg", "meaning": "camino", "context": "El guardia te indica con firmeza el camino permitido dentro de la aldea.", "choices": ["camino", "casa", "fuente"], "answer": "camino", "confirmed": false }
           ],
           "lines": [
             "Halt! Wer bist du?",
-            "Der Wald ist heute geschlossen."
+            "Der Wald ist heute geschlossen.",
+            "Der Weg bleibt versperrt."
           ]
         },
         {
           "condition": {},
           "context": "El guardia observa el camino al bosque.",
-          "portrait": "res://assets/art/portraits/guardia_desconfiado.png",
+          "portrait": "res://assets/art/portraits/anim/guardia_desconfiado_talk_3f.png",
           "effects": [
             { "type": "vocabulary", "word": "Weg", "meaning": "camino", "context": "El guardia señala una dirección con la mano.", "choices": ["camino", "casa", "fuente"], "answer": "camino", "confirmed": false }
           ],
@@ -63,7 +66,7 @@
         {
           "condition": { "relationship": "neutral" },
           "context": "La niña mira la fuente de la plaza con curiosidad.",
-          "portrait": "res://assets/art/portraits/nina_curiosa.png",
+          "portrait": "res://assets/art/portraits/anim/nina_curiosa_talk_3f.png",
           "effects": [
             { "type": "vocabulary", "word": "Quelle", "meaning": "fuente", "context": "Leni mira la fuente de agua de la plaza.", "choices": ["fuente", "puerta", "pan"], "answer": "fuente", "confirmed": false },
             { "type": "vocabulary", "word": "Mitte", "meaning": "centro", "context": "Leni indica que la fuente está en el centro de la plaza.", "choices": ["centro", "bosque", "casa"], "answer": "centro", "confirmed": false }
@@ -76,7 +79,7 @@
         {
           "condition": {},
           "context": "La niña se queda cerca de la plaza.",
-          "portrait": "res://assets/art/portraits/nina_curiosa.png",
+          "portrait": "res://assets/art/portraits/anim/nina_curiosa_talk_3f.png",
           "effects": [
             { "type": "vocabulary", "word": "schön", "meaning": "bonito/a", "context": "Leni sonríe al mirar la fuente.", "choices": ["bonito/a", "cerrado", "frío/a"], "answer": "bonito/a", "confirmed": false }
           ],

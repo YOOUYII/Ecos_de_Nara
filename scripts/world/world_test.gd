@@ -1,7 +1,6 @@
 extends Node2D
 
-## Controla únicamente el estado temporal de los accesos del pueblo.
-## La composición visual del mapa permanece editable en world_test.tscn.
+## Controla el estado del pueblo y las notificaciones de eventos narrativos.
 @onready var notice_panel: PanelContainer = $HUD/NoticePanel
 @onready var notice_label: Label = $HUD/NoticePanel/MarginContainer/NoticeLabel
 @onready var notice_timer: Timer = $HUD/NoticeTimer
@@ -9,6 +8,8 @@ extends Node2D
 func _ready() -> void:
 	StoryProgress.current_zone = StoryProgress.ZONE_PUEBLO
 	notice_panel.hide()
+	Letter.fragment_translated.connect(_on_fragment_translated)
+	Letter.fragment_unlocked.connect(_on_fragment_unlocked)
 
 
 func _on_forest_access_body_entered(body: Node2D) -> void:
@@ -28,6 +29,14 @@ func _on_npc_interaction_requested(npc: Npc) -> void:
 func _on_npc_interaction_cancelled(npc: Npc) -> void:
 	if DialogueManager.is_dialogue_open and DialogueManager.current_npc == npc:
 		DialogueManager.close_dialogue()
+
+
+func _on_fragment_translated(fragment: LetterFragment) -> void:
+	show_access_notice("¡Has traducido el %s!\nRevisa tu carta con [C] para consultar tu nuevo objetivo." % fragment.title)
+
+
+func _on_fragment_unlocked(fragment: LetterFragment) -> void:
+	show_access_notice("¡Has descubierto un nuevo fragmento en la carta!\nPúlsala con [C] para examinarlo.")
 
 
 func show_access_notice(message: String) -> void:

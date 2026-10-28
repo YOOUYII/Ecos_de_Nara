@@ -25,7 +25,7 @@ func _ready() -> void:
 
 
 func start_dialogue(npc: Npc) -> bool:
-	if is_dialogue_open:
+	if is_dialogue_open or Notebook.is_open or Letter.is_open:
 		return false
 	var variant := _get_matching_variant(npc)
 	if variant.is_empty():
