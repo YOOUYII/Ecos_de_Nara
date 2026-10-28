@@ -9,6 +9,7 @@ var is_open := false
 var entries_by_key: Dictionary = {}
 var notebook_panel: NotebookPanel
 var last_feedback := ""
+var _entry_sequence := 0
 
 
 func _ready() -> void:
@@ -32,7 +33,10 @@ func add_or_update_entry(
 	if entries_by_key.has(key):
 		(entries_by_key[key] as VocabularyEntry).update(meaning, context, confirmed, choices, correct_answer)
 	else:
-		entries_by_key[key] = VocabularyEntry.new(word, meaning, context, confirmed, choices, correct_answer)
+		_entry_sequence += 1
+		var new_entry := VocabularyEntry.new(word, meaning, context, confirmed, choices, correct_answer)
+		new_entry.order_index = _entry_sequence
+		entries_by_key[key] = new_entry
 	vocabulary_changed.emit()
 	if is_open:
 		notebook_panel.show_notebook(get_entries(), last_feedback)
@@ -58,7 +62,7 @@ func get_entries() -> Array[VocabularyEntry]:
 	var entries: Array[VocabularyEntry] = []
 	for entry in entries_by_key.values():
 		entries.append(entry as VocabularyEntry)
-	entries.sort_custom(func(first: VocabularyEntry, second: VocabularyEntry) -> bool: return first.german.naturalnocasecmp_to(second.german) < 0)
+	entries.sort_custom(func(first: VocabularyEntry, second: VocabularyEntry) -> bool: return first.order_index > second.order_index)
 	return entries
 
 

@@ -8,6 +8,7 @@ var context := ""
 var is_confirmed := false
 var choices: Array[String] = []
 var correct_answer := ""
+var order_index: int = 0
 
 
 func _init(
@@ -22,7 +23,8 @@ func _init(
 	spanish_meaning = meaning
 	context = word_context
 	is_confirmed = confirmed
-	choices = word_choices
+	choices = word_choices.duplicate()
+	choices.shuffle()
 	correct_answer = answer
 
 
@@ -33,7 +35,8 @@ func update(meaning: String, word_context: String, confirmed: bool, word_choices
 		context = word_context
 	is_confirmed = is_confirmed or confirmed
 	if not word_choices.is_empty():
-		choices = word_choices
+		choices = word_choices.duplicate()
+		choices.shuffle()
 	if not answer.is_empty():
 		correct_answer = answer
 

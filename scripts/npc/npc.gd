@@ -52,6 +52,13 @@ func _on_body_exited(body: Node2D) -> void:
 			interaction_cancelled.emit(self)
 
 
+func set_gesture_sheet(new_sheet: Texture2D) -> void:
+	if new_sheet != gesture_sheet:
+		gesture_sheet = new_sheet
+		if gesture_sheet:
+			_configure_gesture()
+
+
 func play_context_gesture() -> void:
 	if gesture_sheet == null:
 		return
