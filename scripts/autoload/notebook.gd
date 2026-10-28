@@ -1,6 +1,6 @@
 extends Node
 
-## Libreta de la partida actual. El guardado persistente se incorporará después.
+## Libreta de la partida actual. Registra vocabulario e hipótesis.
 const NOTEBOOK_PANEL_SCENE := preload("res://scenes/ui/notebook_panel.tscn")
 
 signal vocabulary_changed
@@ -119,3 +119,55 @@ func _input(event: InputEvent) -> void:
 		else:
 			open_notebook()
 		get_viewport().set_input_as_handled()
+
+
+# --- Serialización y Persistencia (Sección 10) ---
+
+func serialize() -> Dictionary:
+	var list: Array[Dictionary] = []
+	for key in entries_by_key:
+		var entry: VocabularyEntry = entries_by_key[key]
+		if entry:
+			list.append({
+				"word": entry.german,
+				"meaning": entry.spanish_meaning,
+				"context": entry.context,
+				"is_confirmed": entry.is_confirmed,
+				"choices": entry.choices.duplicate(),
+				"correct_answer": entry.correct_answer,
+				"order_index": entry.order_index
+			})
+	return {
+		"entry_sequence": _entry_sequence,
+		"entries": list
+	}
+
+
+func deserialize(data: Dictionary) -> void:
+	entries_by_key.clear()
+	_entry_sequence = int(data.get("entry_sequence", 0))
+	last_feedback = ""
+	for item in data.get("entries", []):
+		if item is Dictionary:
+			var choices: Array[String] = []
+			for c in item.get("choices", []):
+				choices.append(str(c))
+			var entry := VocabularyEntry.new(
+				str(item.get("word", "")),
+				str(item.get("meaning", "")),
+				str(item.get("context", "")),
+				bool(item.get("is_confirmed", false)),
+				choices,
+				str(item.get("correct_answer", ""))
+			)
+			entry.order_index = int(item.get("order_index", 0))
+			var key := entry.german.to_lower().strip_edges()
+			entries_by_key[key] = entry
+	vocabulary_changed.emit()
+
+
+func reset() -> void:
+	entries_by_key.clear()
+	_entry_sequence = 0
+	last_feedback = ""
+	vocabulary_changed.emit()

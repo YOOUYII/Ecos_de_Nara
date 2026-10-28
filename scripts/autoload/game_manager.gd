@@ -1,6 +1,6 @@
 extends Node
 
-## Autoload principal: gestiona personaje, transiciones de zona y posición de spawn.
+## Autoload principal: gestiona personaje, transiciones de zona y reinicio de partida.
 
 const CHARACTER_FORASTERO := "forastero"
 const CHARACTER_FORASTERA := "forastera"
@@ -29,6 +29,7 @@ func has_selected_character() -> bool:
 
 
 func start_new_game() -> void:
+	reset_all_data()
 	get_tree().change_scene_to_file("res://scenes/ui/character_select.tscn")
 
 
@@ -51,4 +52,33 @@ func change_zone(zone: String, spawn_pos: Vector2, direction: String = "down") -
 		return
 	spawn_position = spawn_pos
 	spawn_direction = direction
+	StoryProgress.current_zone = zone
+	
+	# Guardado automático al cambiar de zona si SaveManager está disponible
+	if Engine.has_singleton("SaveManager") or has_node("/root/SaveManager"):
+		var sm = get_node_or_null("/root/SaveManager")
+		if sm and sm.has_method("save_game"):
+			sm.save_game(spawn_pos)
+			
 	get_tree().change_scene_to_file(scene_path)
+
+
+## Reanuda una partida cargada desde archivo.
+func resume_saved_game(zone: String, spawn_pos: Vector2, direction: String = "down") -> void:
+	var scene_path: String = ZONE_SCENES.get(zone, "")
+	if scene_path.is_empty():
+		scene_path = ZONE_SCENES["pueblo"]
+	spawn_position = spawn_pos
+	spawn_direction = direction
+	StoryProgress.current_zone = zone
+	get_tree().change_scene_to_file(scene_path)
+
+
+## Reinicia el estado de todos los subsistemas para una partida nueva y limpia.
+func reset_all_data() -> void:
+	selected_character = ""
+	spawn_position = Vector2.ZERO
+	spawn_direction = "down"
+	StoryProgress.reset()
+	Notebook.reset()
+	Letter.reset()

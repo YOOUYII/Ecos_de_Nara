@@ -14,6 +14,8 @@ const ZONE_PUEBLO := "pueblo"
 const ZONE_BOSQUE := "bosque"
 const ZONE_RIO := "rio"
 
+const DEFAULT_OBJECTIVE := "Habla con los habitantes del pueblo, anota vocabulario (N) y revisa tu carta (C)."
+
 var current_zone := ZONE_PUEBLO
 var unlocked_zones := {
 	ZONE_PUEBLO: true,
@@ -21,7 +23,7 @@ var unlocked_zones := {
 	ZONE_RIO: false,
 }
 var flags: Dictionary = {}
-var current_objective := "Habla con los habitantes del pueblo, anota vocabulario (N) y revisa tu carta (C)."
+var current_objective := DEFAULT_OBJECTIVE
 
 var quests: Dictionary = {}
 var items: Array[String] = []
@@ -101,3 +103,68 @@ func remove_item(item_id: String) -> void:
 	if items.has(clean_id):
 		items.erase(clean_id)
 		item_removed.emit(clean_id)
+
+
+# --- Serialización y Persistencia (Sección 10) ---
+
+func serialize() -> Dictionary:
+	var serialized_quests := {}
+	for q_id in quests:
+		var q: Quest = quests[q_id]
+		if q:
+			serialized_quests[q_id] = {
+				"id": q.id,
+				"title": q.title,
+				"description": q.description,
+				"status": int(q.status)
+			}
+
+	return {
+		"current_zone": current_zone,
+		"unlocked_zones": unlocked_zones.duplicate(),
+		"flags": flags.duplicate(),
+		"current_objective": current_objective,
+		"quests": serialized_quests,
+		"items": items.duplicate()
+	}
+
+
+func deserialize(data: Dictionary) -> void:
+	current_zone = str(data.get("current_zone", ZONE_PUEBLO))
+	unlocked_zones = {
+		ZONE_PUEBLO: bool(data.get("unlocked_zones", {}).get(ZONE_PUEBLO, true)),
+		ZONE_BOSQUE: bool(data.get("unlocked_zones", {}).get(ZONE_BOSQUE, false)),
+		ZONE_RIO: bool(data.get("unlocked_zones", {}).get(ZONE_RIO, false)),
+	}
+	flags = (data.get("flags", {}) as Dictionary).duplicate()
+	current_objective = str(data.get("current_objective", DEFAULT_OBJECTIVE))
+
+	quests.clear()
+	var raw_quests: Dictionary = data.get("quests", {})
+	for q_id in raw_quests:
+		var q_data: Dictionary = raw_quests[q_id]
+		var status_val = int(q_data.get("status", 0))
+		var q := Quest.new(
+			str(q_data.get("id", q_id)),
+			str(q_data.get("title", "")),
+			str(q_data.get("description", "")),
+			status_val as Quest.Status
+		)
+		quests[q_id] = q
+
+	items.clear()
+	for it in data.get("items", []):
+		items.append(str(it))
+
+
+func reset() -> void:
+	current_zone = ZONE_PUEBLO
+	unlocked_zones = {
+		ZONE_PUEBLO: true,
+		ZONE_BOSQUE: false,
+		ZONE_RIO: false,
+	}
+	flags.clear()
+	current_objective = DEFAULT_OBJECTIVE
+	quests.clear()
+	items.clear()

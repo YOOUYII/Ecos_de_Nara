@@ -123,3 +123,30 @@ func _input(event: InputEvent) -> void:
 		else:
 			open_letter()
 		get_viewport().set_input_as_handled()
+
+
+# --- Serialización y Persistencia (Sección 10) ---
+
+func serialize() -> Dictionary:
+	var list: Array[Dictionary] = []
+	for frag in fragments:
+		list.append({
+			"id": frag.id,
+			"status": int(frag.status)
+		})
+	return { "fragments": list }
+
+
+func deserialize(data: Dictionary) -> void:
+	var frag_map := {}
+	for f in data.get("fragments", []):
+		if f is Dictionary:
+			frag_map[str(f.get("id", ""))] = int(f.get("status", 0))
+	for frag in fragments:
+		if frag_map.has(frag.id):
+			var status_val = frag_map[frag.id]
+			frag.status = status_val as LetterFragment.Status
+
+
+func reset() -> void:
+	_init_fragments()
