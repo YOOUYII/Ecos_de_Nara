@@ -36,11 +36,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _inspect_bridge() -> void:
 	if not StoryProgress.has_flag("fragment_3_translated"):
-		_show_notice("El agua corre bajo el puente de madera.\nDebes traducir el Fragmento III de la carta primero.")
+		_show_notice(tr("El agua corre bajo el puente de madera.\nDebes traducir el Fragmento III de la carta primero."))
 		return
 
 	if StoryProgress.has_flag("demo_completed"):
-		_show_notice("Bajo el puente las aguas del río fluyen en paz.\nYa tienes el Amuleto de Nara.")
+		_show_notice(tr("Bajo el puente las aguas del río fluyen en paz.\nYa tienes el Amuleto de Nara."))
 		return
 
 	# Descubrimiento del secreto bajo el puente y cierre de la historia de la demo
@@ -49,7 +49,7 @@ func _inspect_bridge() -> void:
 	StoryProgress.set_objective("¡Misterio completado! Has descifrado la carta y encontrado el Amuleto de Nara.")
 	if is_instance_valid(amuleto_sprite):
 		amuleto_sprite.show()
-	_show_notice("¡Has encontrado el Amuleto de Nara bajo el puente!\n«Bajo el puente está la respuesta. Ve a casa.»\n¡Felicidades, has completado el misterio de la demo!")
+	_show_notice(tr("¡Has encontrado el Amuleto de Nara bajo el puente!\n«Bajo el puente está la respuesta. Ve a casa.»\n¡Felicidades, has completado el misterio de la demo!"))
 
 
 ## Transición oeste → bosque
@@ -80,11 +80,11 @@ func _on_npc_interaction_cancelled(npc: Npc) -> void:
 
 
 func _on_fragment_translated(fragment: LetterFragment) -> void:
-	_show_notice("¡Has traducido el %s!\nRevisa tu carta con [C]." % fragment.title)
+	_show_notice(tr("¡Has traducido el %s!\nRevisa tu carta con [C].") % fragment.title)
 
 
 func _on_fragment_unlocked(fragment: LetterFragment) -> void:
-	_show_notice("¡Nuevo fragmento en la carta!\nPúlsa [C] para examinarlo.")
+	_show_notice(tr("¡Nuevo fragmento en la carta!\nPúlsa [C] para examinarlo."))
 
 
 func _show_notice(message: String) -> void:

@@ -50,9 +50,10 @@ func set_flag(flag: String, value := true) -> void:
 		flag_changed.emit(flag, value)
 
 
+## `objective` es el texto original en español (o ya traducido): se traduce al idioma principal.
 func set_objective(objective: String) -> void:
-	current_objective = objective
-	objective_changed.emit(objective)
+	current_objective = tr(objective)
+	objective_changed.emit(current_objective)
 
 
 # --- Sistema de Misiones / Favores ---

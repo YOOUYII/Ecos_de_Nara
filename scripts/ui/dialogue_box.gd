@@ -40,7 +40,7 @@ func _setup_anim_timer() -> void:
 func show_line(speaker: String, line: String, portrait_path: String, is_last_line: bool, extras: Dictionary = {}) -> void:
 	speaker_label.text = speaker
 	dialogue_label.text = line
-	next_button.text = "Cerrar" if is_last_line else "Continuar  [E]"
+	next_button.text = tr("Cerrar") if is_last_line else tr("Continuar  [E]")
 	_load_portrait(portrait_path)
 	_prepare_icon(line, extras)
 	panel.show()

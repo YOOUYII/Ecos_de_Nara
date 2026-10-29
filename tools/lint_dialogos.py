@@ -2,13 +2,16 @@
 """Lintador de diálogos A1 progresivo.
 
 Revisa solo los NPC listados en `rewritten_npcs` de data/lexicon_a1.json.
-Uso: python tools/lint_dialogos.py   (desde la raíz del proyecto Godot)
+Uso: python tools/lint_dialogos.py [--lang de]   (desde la raíz del proyecto Godot)
 Código de salida: 0 sin errores, 1 con errores. Los avisos no fallan.
 """
 import json
 import re
 import sys
 from pathlib import Path
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 ROOT = Path(__file__).resolve().parent.parent
 TOKEN = re.compile(r"[^\W\d_]+", re.UNICODE)
@@ -19,11 +22,16 @@ def load(path):
         return json.load(f)
 
 
-def line_parts(raw):
-    """Devuelve (texto, icono, palabra_icono) de una línea String o Dictionary."""
-    if isinstance(raw, dict):
-        return str(raw.get("text", "")), str(raw.get("icon", "")), str(raw.get("icon_word", ""))
-    return str(raw), "", ""
+def line_parts(raw, content, errors, where):
+    """Devuelve (texto, icono, palabra_icono) de una línea (ID, String literal o Dictionary)."""
+    meta = raw if isinstance(raw, dict) else {}
+    line_id = meta.get("id") if meta else (raw if isinstance(raw, str) and raw in content["lines"] else None)
+    entry = content["lines"].get(line_id) if line_id else None
+    if line_id and entry is None:
+        errors.append(f"{where}: la línea '{line_id}' no tiene texto en content/{content['language']}.json")
+    base = {} if entry is None else ({"text": entry} if isinstance(entry, str) else entry)
+    text = str(meta.get("text", base.get("text", raw if isinstance(raw, str) and not line_id else "")))
+    return text, str(meta.get("icon", "")), str(meta.get("icon_word", base.get("icon_word", "")))
 
 
 def tokens(text):
@@ -34,8 +42,10 @@ def res_to_path(res):
     return ROOT / res.replace("res://", "")
 
 
-def lint():
-    lex = load(ROOT / "data" / "lexicon_a1.json")
+def lint(lang="de"):
+    lex_path = ROOT / "data" / ("lexicon_a1.json" if lang == "de" else f"lexicon_{lang}.json")
+    lex = load(lex_path)
+    content = load(ROOT / "data" / "content" / f"{lang}.json")
     words = lex["words"]
     limits = lex["limits"]
     banned = set(lex.get("banned_tokens", []))
@@ -48,7 +58,7 @@ def lint():
                 continue
             for vi, variant in enumerate(npc_data.get("variants", [])):
                 where = f"{dlg_file.name}:{npc}[{vi}]"
-                lines = [line_parts(r) for r in variant.get("lines", [])]
+                lines = [line_parts(r, content, errors, where) for r in variant.get("lines", [])]
                 effects = [e for e in variant.get("effects", []) if e.get("type") == "vocabulary"]
 
                 if len(effects) > limits["max_target_words_per_variant"]:
@@ -72,7 +82,10 @@ def lint():
 
                 # Cada palabra objetivo necesita ancla: una línea que la contenga con icono (o gesto de la variante).
                 for eff in effects:
-                    word = str(eff.get("word", ""))
+                    word = content["words"].get(eff.get("concept", ""), "") if eff.get("concept") else str(eff.get("word", ""))
+                    if not word:
+                        errors.append(f"{where}: el concepto '{eff.get('concept')}' no tiene palabra en content/{lang}.json")
+                        continue
                     entry = next(
                         (e for e in words.values() if e.get("kind") == "target" and e.get("lemma", "").lower() == word.lower()),
                         None,
@@ -106,4 +119,5 @@ def lint():
 
 
 if __name__ == "__main__":
-    sys.exit(lint())
+    lang_arg = sys.argv[sys.argv.index("--lang") + 1] if "--lang" in sys.argv else "de"
+    sys.exit(lint(lang_arg))

@@ -34,6 +34,39 @@ func delete_save() -> bool:
 	return false
 
 
+## Restaura el par de idiomas guardado y lo bloquea. Un guardado anterior (sin "language") usa
+## alemán con glosa en español; si el par guardado ya no está disponible, se usa también ese.
+func apply_language(save_data: Dictionary) -> void:
+	var info: Dictionary = save_data.get("language", {})
+	Lang.unlock()
+	var restored := Lang.set_languages(
+		str(info.get("target", Lang.DEFAULT_TARGET)),
+		str(info.get("native", Lang.DEFAULT_NATIVE))
+	)
+	if not restored:
+		push_warning("Par de idiomas guardado no disponible; se usan los idiomas por defecto.")
+		Lang.set_languages(Lang.DEFAULT_TARGET, Lang.DEFAULT_NATIVE)
+	Lang.lock()
+
+
+func build_save_dict(player_pos: Vector2) -> Dictionary:
+	return {
+		"version": 1,
+		"timestamp": Time.get_datetime_string_from_system(),
+		"language": {"target": Lang.target, "native": Lang.native},
+		"game": {
+			"character": GameManager.selected_character,
+			"zone": StoryProgress.current_zone,
+			"pos_x": player_pos.x,
+			"pos_y": player_pos.y,
+			"direction": GameManager.spawn_direction
+		},
+		"story": StoryProgress.serialize(),
+		"notebook": Notebook.serialize(),
+		"letter": Letter.serialize()
+	}
+
+
 func save_game(position_override: Vector2 = Vector2.ZERO, show_toast: bool = true) -> bool:
 	# No guardar en menús iniciales
 	if not GameManager.has_selected_character():
@@ -50,20 +83,7 @@ func save_game(position_override: Vector2 = Vector2.ZERO, show_toast: bool = tru
 	if player_pos == Vector2.ZERO:
 		player_pos = Vector2(640, 360)
 
-	var save_dict := {
-		"version": 1,
-		"timestamp": Time.get_datetime_string_from_system(),
-		"game": {
-			"character": GameManager.selected_character,
-			"zone": StoryProgress.current_zone,
-			"pos_x": player_pos.x,
-			"pos_y": player_pos.y,
-			"direction": GameManager.spawn_direction
-		},
-		"story": StoryProgress.serialize(),
-		"notebook": Notebook.serialize(),
-		"letter": Letter.serialize()
-	}
+	var save_dict := build_save_dict(player_pos)
 
 	var file := FileAccess.open(SAVE_FILE_PATH, FileAccess.WRITE)
 	if file == null:
@@ -117,6 +137,8 @@ func load_game() -> bool:
 	)
 	var dir: String = str(game_info.get("direction", "down"))
 
+	# Primero los idiomas: la libreta y la carta se restauran sobre sus paquetes.
+	apply_language(save_data)
 	StoryProgress.deserialize(save_data.get("story", {}))
 	Notebook.deserialize(save_data.get("notebook", {}))
 	Letter.deserialize(save_data.get("letter", {}))
@@ -143,7 +165,7 @@ func _input(event: InputEvent) -> void:
 func show_save_notification(text: String) -> void:
 	if not is_instance_valid(_save_toast_label):
 		return
-	_save_toast_label.text = text
+	_save_toast_label.text = tr(text)
 	if _toast_tween:
 		_toast_tween.kill()
 	_toast_tween = create_tween()

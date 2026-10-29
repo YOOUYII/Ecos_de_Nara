@@ -3,66 +3,49 @@
     "pescadora": {
       "variants": [
         {
-          "condition": {
-            "flag": "demo_completed"
-          },
+          "condition": {"flag": "demo_completed"},
           "portrait": "res://assets/art/portraits/anim/pescadora_reveladora_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_senalar.png",
-          "lines": [
-            "Das Amulett!",
-            "Du bist gut.",
-            "Danke, Freund!",
-            "Gute Reise!"
-          ],
+          "lines": ["pescadora.v0.l0", "pescadora.v0.l1", "pescadora.v0.l2", "pescadora.v0.l3"],
           "effects": []
         },
         {
-          "condition": {
-            "quest": "favor_lenador",
-            "quest_status": "active"
-          },
+          "condition": {"quest": "favor_lenador", "quest_status": "active"},
           "portrait": "res://assets/art/portraits/anim/pescadora_cautelosa_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_senalar.png",
           "lines": [
-            "Wer bist du?",
-            "Fritz? Gut. Ich bin Maren.",
-            { "text": "Fisch.", "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_pescar.png" },
-            { "text": "Unter der Brücke.", "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_senalar.png" },
-            { "text": "Die Antwort.", "portrait": "res://assets/art/portraits/anim/pescadora_reveladora_talk_3f.png" },
-            { "text": "Geh nach Hause.", "portrait": "res://assets/art/portraits/anim/pescadora_reveladora_talk_3f.png" }
+            "pescadora.v1.l0",
+            "pescadora.v1.l1",
+            {"id": "pescadora.v1.l2", "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_pescar.png"},
+            {"id": "pescadora.v1.l3", "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_senalar.png"},
+            {"id": "pescadora.v1.l4", "portrait": "res://assets/art/portraits/anim/pescadora_reveladora_talk_3f.png"},
+            {"id": "pescadora.v1.l5", "portrait": "res://assets/art/portraits/anim/pescadora_reveladora_talk_3f.png"}
           ],
           "effects": [
-            { "type": "complete_quest", "quest_id": "favor_lenador" },
-            { "type": "unlock_fragment", "fragment_id": "fragment_3" },
-            { "type": "set_objective", "objective": "Has completado los favores. Revisa tu carta (C) — quizá puedas traducir nuevos fragmentos." },
-            { "type": "vocabulary", "word": "Antwort", "meaning": "respuesta", "context": "Maren dice que tiene la respuesta sobre el puente.", "choices": ["pregunta", "respuesta", "secreto"], "answer": "respuesta", "confirmed": false },
-            { "type": "vocabulary", "word": "Hause", "meaning": "casa", "context": "Maren dice «nach Hause» (a casa): Hause solo existe en esa frase.", "choices": ["río", "bosque", "casa"], "answer": "casa", "confirmed": false },
-            { "type": "vocabulary", "word": "Fisch", "meaning": "pez", "context": "Maren muestra un pez y señala bajo el puente.", "choices": ["pájaro", "pez", "árbol"], "answer": "pez", "confirmed": false },
-            { "type": "set_flag", "flag": "met_maren" }
+            {"type": "complete_quest", "quest_id": "favor_lenador"},
+            {"type": "unlock_fragment", "fragment_id": "fragment_3"},
+            {
+              "type": "set_objective",
+              "objective": "Has completado los favores. Revisa tu carta (C) — quizá puedas traducir nuevos fragmentos."
+            },
+            {"type": "vocabulary", "concept": "answer", "context_id": "pescadora.v1.answer"},
+            {"type": "vocabulary", "concept": "home", "context_id": "pescadora.v1.home"},
+            {"type": "vocabulary", "concept": "fish", "context_id": "pescadora.v1.fish"},
+            {"type": "set_flag", "flag": "met_maren"}
           ]
         },
         {
-          "condition": {
-            "quest": "favor_lenador",
-            "quest_status": "completed"
-          },
+          "condition": {"quest": "favor_lenador", "quest_status": "completed"},
           "portrait": "res://assets/art/portraits/anim/pescadora_cautelosa_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_pescar.png",
-          "lines": [
-            "Fisch.",
-            "Unter der Brücke.",
-            "Die Antwort."
-          ],
+          "lines": ["pescadora.v2.l0", "pescadora.v2.l1", "pescadora.v2.l2"],
           "effects": []
         },
         {
           "condition": {},
           "portrait": "res://assets/art/portraits/anim/pescadora_cautelosa_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_pescar.png",
-          "lines": [
-            "Wer bist du?",
-            "Ich bin Maren."
-          ],
+          "lines": ["pescadora.v3.l0", "pescadora.v3.l1"],
           "effects": []
         }
       ]

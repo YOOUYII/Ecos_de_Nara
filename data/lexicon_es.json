@@ -1,0 +1,147 @@
+{
+  "_doc": "Vocabulario permitido en español (idioma a aprender). Presente de indicativo (ser, estar), imperativos cortos y fijos (ve, habla) y una sola contracción, 'al norte', enseñada como frase fija. kind: target | function | name | transparent.",
+  "rewritten_npcs": ["panadera", "guardia", "nina", "lenador", "pescadora"],
+  "limits": {"max_words_per_line": 6, "max_target_words_per_variant": 3},
+  "banned_tokens": ["fue", "fui", "era", "había", "dijo", "tenía"],
+  "words": {
+    "hola": {
+      "kind": "target",
+      "lemma": "Hola",
+      "forms": ["hola"],
+      "anchor": "gesto idle + retrato amable",
+      "anchor_pending": true
+    },
+    "días": {
+      "kind": "target",
+      "lemma": "Buenos días",
+      "forms": ["días"],
+      "anchor": "saludo con retrato amable",
+      "anchor_pending": true
+    },
+    "pan": {"kind": "target", "lemma": "pan", "forms": ["pan"], "anchor": "pictograma vocab_brot"},
+    "agua": {"kind": "target", "lemma": "agua", "forms": ["agua"], "anchor": "pictograma vocab_wasser"},
+    "ayudar": {"kind": "target", "lemma": "ayudar", "forms": ["ayudar"], "anchor": "pictograma vocab_helfen"},
+    "cesta": {"kind": "target", "lemma": "cesta", "forms": ["cesta"], "anchor": "pictograma vocab_korb"},
+    "norte": {"kind": "target", "lemma": "norte", "forms": ["norte"], "anchor": "pictograma vocab_norden"},
+    "gracias": {
+      "kind": "target",
+      "lemma": "Gracias",
+      "forms": ["gracias"],
+      "anchor": "retrato agradecida",
+      "anchor_pending": true
+    },
+    "camino": {"kind": "target", "lemma": "camino", "forms": ["camino"], "anchor": "pictograma vocab_weg"},
+    "alto": {"kind": "target", "lemma": "Alto", "forms": ["alto"], "anchor": "pictograma vocab_halt"},
+    "bosque": {"kind": "target", "lemma": "bosque", "forms": ["bosque"], "anchor": "pictograma vocab_wald"},
+    "abro": {
+      "kind": "target",
+      "lemma": "abrir",
+      "forms": ["abro"],
+      "anchor": "animación de barrera (arte J)",
+      "anchor_pending": true
+    },
+    "cuidado": {
+      "kind": "target",
+      "lemma": "Cuidado",
+      "forms": ["cuidado"],
+      "anchor": "pictograma achtung (arte A)",
+      "anchor_pending": true
+    },
+    "fuente": {
+      "kind": "target",
+      "lemma": "fuente",
+      "forms": ["fuente"],
+      "anchor": "gesto señalar de Leni hacia la fuente",
+      "anchor_pending": true
+    },
+    "centro": {
+      "kind": "target",
+      "lemma": "centro",
+      "forms": ["centro"],
+      "anchor": "gesto señalar de Leni (pictograma mitte pendiente)"
+    },
+    "bonita": {
+      "kind": "target",
+      "lemma": "bonita",
+      "forms": ["bonita"],
+      "anchor": "retrato alegre + pictograma schoen pendiente",
+      "anchor_pending": true
+    },
+    "madera": {
+      "kind": "target",
+      "lemma": "madera",
+      "forms": ["madera"],
+      "anchor": "gesto cortar + pictograma holz pendiente",
+      "anchor_pending": true
+    },
+    "puente": {
+      "kind": "target",
+      "lemma": "puente",
+      "forms": ["puente"],
+      "anchor": "gesto señalar (arte H) + pictograma bruecke pendiente",
+      "anchor_pending": true
+    },
+    "llave": {
+      "kind": "target",
+      "lemma": "llave",
+      "forms": ["llave"],
+      "anchor": "gesto entregar + llave en inventario; pictograma schluessel pendiente",
+      "anchor_pending": true
+    },
+    "pez": {
+      "kind": "target",
+      "lemma": "pez",
+      "forms": ["pez"],
+      "anchor": "gesto pescar + pictograma fisch pendiente",
+      "anchor_pending": true
+    },
+    "respuesta": {
+      "kind": "target",
+      "lemma": "respuesta",
+      "forms": ["respuesta"],
+      "anchor": "retrato reveladora + pictograma antwort pendiente",
+      "anchor_pending": true
+    },
+    "casa": {
+      "kind": "target",
+      "lemma": "casa",
+      "forms": ["casa"],
+      "anchor": "pictograma haus pendiente",
+      "anchor_pending": true
+    },
+    "amuleto": {"kind": "transparent"},
+    "fritz": {"kind": "name"},
+    "karl": {"kind": "name"},
+    "helga": {"kind": "name"},
+    "leni": {"kind": "name"},
+    "maren": {"kind": "name"},
+    "soy": {"kind": "function"},
+    "es": {"kind": "function"},
+    "eres": {"kind": "function"},
+    "esto": {"kind": "function"},
+    "el": {"kind": "function"},
+    "la": {"kind": "function"},
+    "en": {"kind": "function"},
+    "de": {"kind": "function"},
+    "con": {"kind": "function"},
+    "para": {"kind": "function"},
+    "ve": {"kind": "function"},
+    "al": {"kind": "function"},
+    "aquí": {"kind": "function"},
+    "está": {"kind": "function"},
+    "puedes": {"kind": "function"},
+    "no": {"kind": "function"},
+    "bajo": {"kind": "function"},
+    "quién": {"kind": "function"},
+    "bien": {"kind": "function"},
+    "amigo": {"kind": "function"},
+    "bueno": {"kind": "function"},
+    "buen": {"kind": "function"},
+    "buenos": {"kind": "function"},
+    "viaje": {"kind": "function"},
+    "abierto": {"kind": "function"},
+    "cerrado": {"kind": "function"},
+    "habla": {"kind": "function"},
+    "a": {"kind": "function"}
+  }
+}

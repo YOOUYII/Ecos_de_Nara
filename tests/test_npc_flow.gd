@@ -94,6 +94,33 @@ func _run() -> void:
 	var maren_done := _play(maren)
 	_check(maren_done == ["Fisch.", "Unter der Brücke.", "Die Antwort."], "Maren misión completada: %s" % [maren_done])
 
+	# i18n: la glosa llega por concepto, el guardado viejo sigue cargando y la glosa se puede cambiar.
+	var lang: Node = root.get_node("Lang")
+	var brot: VocabularyEntry = keys.get("brot")
+	_check(brot != null and brot.concept == "bread" and brot.spanish_meaning == "pan", "i18n: 'Brot' resuelve concepto y significado")
+	_check(brot != null and brot.context == "La panadera ofrece pan caliente mientras pronuncia la palabra.", "i18n: contexto de 'Brot' idéntico al original")
+	_check(lang.target == "de" and lang.native == "es", "i18n: idiomas por defecto de/es")
+	_check(not lang.set_languages("de", "de") and not lang.set_languages("xx", "es"), "i18n: rechaza idiomas iguales o inexistentes")
+
+	notebook.deserialize({
+		"entry_sequence": 2,
+		"entries": [
+			{"word": "Wasser", "meaning": "texto viejo", "context": "contexto viejo", "is_confirmed": true, "choices": ["a", "b"], "correct_answer": "agua", "order_index": 1},
+			{"word": "Quelle", "meaning": "fuente", "context": "contexto quelle", "is_confirmed": false, "choices": [], "correct_answer": "fuente", "order_index": 2},
+		],
+	})
+	var water: VocabularyEntry = notebook.entries_by_key.get("wasser")
+	var quelle: VocabularyEntry = notebook.entries_by_key.get("quelle")
+	_check(water != null and water.concept == "water" and water.spanish_meaning == "agua" and water.is_confirmed, "i18n: guardado viejo deduce concepto, refresca glosa y conserva 'confirmada'")
+	_check(water != null and water.context == "contexto viejo", "i18n: guardado viejo conserva su contexto si no hay context_id")
+	_check(quelle != null and quelle.concept == "" and quelle.spanish_meaning == "fuente", "i18n: palabra retirada ('Quelle') se conserva tal cual")
+	var saved: Dictionary = notebook.serialize()
+	_check(saved["entries"][0].has("concept") and saved["entries"][0].has("context_id"), "i18n: el guardado nuevo incluye concepto y contexto")
+
+	lang._gloss["concepts"]["water"]["meaning"] = "water"
+	notebook.refresh_gloss()
+	_check(water.spanish_meaning == "water", "i18n: refresh_gloss aplica el nuevo idioma principal")
+
 	print("RESULTADO: %s" % ("OK" if _failures == 0 else "%d FALLOS" % _failures))
 	quit(_failures)
 

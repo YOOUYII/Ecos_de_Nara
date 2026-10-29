@@ -25,12 +25,12 @@ func _ready() -> void:
 
 func _on_forest_access_body_entered(body: Node2D) -> void:
 	if body is Player and not StoryProgress.can_enter(StoryProgress.ZONE_BOSQUE):
-		show_access_notice("El guardia bloquea el camino al bosque.\nNecesitas ganarte la confianza del pueblo.")
+		show_access_notice(tr("El guardia bloquea el camino al bosque.\nNecesitas ganarte la confianza del pueblo."))
 
 
 func _on_river_access_body_entered(body: Node2D) -> void:
 	if body is Player and not StoryProgress.can_enter(StoryProgress.ZONE_RIO):
-		show_access_notice("La ruta del río está cerrada.\nPrimero debes conseguir autorización.")
+		show_access_notice(tr("La ruta del río está cerrada.\nPrimero debes conseguir autorización."))
 
 
 ## Transición al bosque cuando el jugador cruza al norte
@@ -49,11 +49,11 @@ func _on_npc_interaction_cancelled(npc: Npc) -> void:
 
 
 func _on_fragment_translated(fragment: LetterFragment) -> void:
-	show_access_notice("¡Has traducido el %s!\nRevisa tu carta con [C] para consultar tu nuevo objetivo." % fragment.title)
+	show_access_notice(tr("¡Has traducido el %s!\nRevisa tu carta con [C] para consultar tu nuevo objetivo.") % fragment.title)
 
 
 func _on_fragment_unlocked(fragment: LetterFragment) -> void:
-	show_access_notice("¡Has descubierto un nuevo fragmento en la carta!\nPúlsala con [C] para examinarlo.")
+	show_access_notice(tr("¡Has descubierto un nuevo fragmento en la carta!\nPúlsala con [C] para examinarlo."))
 
 
 func _on_zone_unlocked(zone_name: String) -> void:
@@ -77,7 +77,7 @@ func _open_forest_path(animate: bool = true) -> void:
 			barrera_bosque.modulate.a = 0.5
 
 	if animate:
-		show_access_notice("¡El camino hacia el bosque está abierto!\nEl guardia Karl te ha concedido el paso al norte.")
+		show_access_notice(tr("¡El camino hacia el bosque está abierto!\nEl guardia Karl te ha concedido el paso al norte."))
 
 
 func show_access_notice(message: String) -> void:

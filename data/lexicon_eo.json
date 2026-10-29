@@ -1,0 +1,137 @@
+{
+  "_doc": "Vocabulario permitido en esperanto (idioma a aprender). Los diálogos evitan el acusativo -n salvo frases fijas (Dankon, Bonan matenon, Bonan vojaĝon) y los adverbios direccionales norden y hejmen, enseñados como unidades. kind: target | function | name | transparent.",
+  "rewritten_npcs": ["panadera", "guardia", "nina", "lenador", "pescadora"],
+  "limits": {"max_words_per_line": 6, "max_target_words_per_variant": 3},
+  "banned_tokens": [],
+  "words": {
+    "saluton": {
+      "kind": "target",
+      "lemma": "Saluton",
+      "forms": ["saluton"],
+      "anchor": "gesto idle + retrato amable",
+      "anchor_pending": true
+    },
+    "matenon": {
+      "kind": "target",
+      "lemma": "Bonan matenon",
+      "forms": ["matenon"],
+      "anchor": "saludo con retrato amable",
+      "anchor_pending": true
+    },
+    "pano": {"kind": "target", "lemma": "pano", "forms": ["pano"], "anchor": "pictograma vocab_brot"},
+    "akvo": {"kind": "target", "lemma": "akvo", "forms": ["akvo"], "anchor": "pictograma vocab_wasser"},
+    "helpi": {"kind": "target", "lemma": "helpi", "forms": ["helpi"], "anchor": "pictograma vocab_helfen"},
+    "korbo": {"kind": "target", "lemma": "korbo", "forms": ["korbo"], "anchor": "pictograma vocab_korb"},
+    "norden": {"kind": "target", "lemma": "norden", "forms": ["norden"], "anchor": "pictograma vocab_norden"},
+    "dankon": {"kind": "target", "lemma": "Dankon", "forms": ["dankon"], "anchor": "retrato agradecida", "anchor_pending": true},
+    "vojo": {"kind": "target", "lemma": "vojo", "forms": ["vojo"], "anchor": "pictograma vocab_weg"},
+    "haltu": {"kind": "target", "lemma": "Haltu", "forms": ["haltu"], "anchor": "pictograma vocab_halt"},
+    "arbaro": {"kind": "target", "lemma": "arbaro", "forms": ["arbaro"], "anchor": "pictograma vocab_wald"},
+    "malfermas": {
+      "kind": "target",
+      "lemma": "malfermi",
+      "forms": ["malfermas"],
+      "anchor": "animación de barrera (arte J)",
+      "anchor_pending": true
+    },
+    "atentu": {
+      "kind": "target",
+      "lemma": "Atentu",
+      "forms": ["atentu"],
+      "anchor": "pictograma achtung (arte A)",
+      "anchor_pending": true
+    },
+    "fontano": {
+      "kind": "target",
+      "lemma": "fontano",
+      "forms": ["fontano"],
+      "anchor": "gesto señalar de Leni hacia la fuente",
+      "anchor_pending": true
+    },
+    "mezo": {
+      "kind": "target",
+      "lemma": "mezo",
+      "forms": ["mezo"],
+      "anchor": "gesto señalar de Leni (pictograma mitte pendiente)"
+    },
+    "bela": {
+      "kind": "target",
+      "lemma": "bela",
+      "forms": ["bela"],
+      "anchor": "retrato alegre + pictograma schoen pendiente",
+      "anchor_pending": true
+    },
+    "ligno": {
+      "kind": "target",
+      "lemma": "ligno",
+      "forms": ["ligno"],
+      "anchor": "gesto cortar + pictograma holz pendiente",
+      "anchor_pending": true
+    },
+    "ponto": {
+      "kind": "target",
+      "lemma": "ponto",
+      "forms": ["ponto"],
+      "anchor": "gesto señalar (arte H) + pictograma bruecke pendiente",
+      "anchor_pending": true
+    },
+    "ŝlosilo": {
+      "kind": "target",
+      "lemma": "ŝlosilo",
+      "forms": ["ŝlosilo"],
+      "anchor": "gesto entregar + llave en inventario; pictograma schluessel pendiente",
+      "anchor_pending": true
+    },
+    "fiŝo": {
+      "kind": "target",
+      "lemma": "fiŝo",
+      "forms": ["fiŝo"],
+      "anchor": "gesto pescar + pictograma fisch pendiente",
+      "anchor_pending": true
+    },
+    "respondo": {
+      "kind": "target",
+      "lemma": "respondo",
+      "forms": ["respondo"],
+      "anchor": "retrato reveladora + pictograma antwort pendiente",
+      "anchor_pending": true
+    },
+    "hejmen": {
+      "kind": "target",
+      "lemma": "hejmen",
+      "forms": ["hejmen"],
+      "anchor": "pictograma haus pendiente",
+      "anchor_pending": true
+    },
+    "amuleto": {"kind": "transparent"},
+    "fritz": {"kind": "name"},
+    "karl": {"kind": "name"},
+    "helga": {"kind": "name"},
+    "leni": {"kind": "name"},
+    "maren": {"kind": "name"},
+    "mi": {"kind": "function"},
+    "estas": {"kind": "function"},
+    "ĉi": {"kind": "function"},
+    "tio": {"kind": "function"},
+    "la": {"kind": "function"},
+    "en": {"kind": "function"},
+    "al": {"kind": "function"},
+    "iru": {"kind": "function"},
+    "vi": {"kind": "function"},
+    "povas": {"kind": "function"},
+    "ĉu": {"kind": "function"},
+    "jen": {"kind": "function"},
+    "por": {"kind": "function"},
+    "de": {"kind": "function"},
+    "kiu": {"kind": "function"},
+    "ne": {"kind": "function"},
+    "sub": {"kind": "function"},
+    "bona": {"kind": "function"},
+    "bone": {"kind": "function"},
+    "bonan": {"kind": "function"},
+    "malferma": {"kind": "function"},
+    "ferma": {"kind": "function"},
+    "amiko": {"kind": "function"},
+    "vojaĝon": {"kind": "function"}
+  }
+}

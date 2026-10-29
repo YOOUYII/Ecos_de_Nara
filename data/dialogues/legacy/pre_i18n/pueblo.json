@@ -1,0 +1,204 @@
+{
+  "dialogues": {
+    "panadera": {
+      "variants": [
+        {
+          "condition": {
+            "flag": "fragment_1_translated",
+            "quest": "favor_panadera",
+            "quest_status": "not_started"
+          },
+          "context": "La panadera te mira con atención al notar que comprendes sus palabras y te pide ayuda.",
+          "portrait": "res://assets/art/portraits/anim/panadera_pensativa_talk_3f.png",
+          "effects": [
+            { "type": "vocabulary", "word": "helfen", "meaning": "ayudar", "context": "La panadera te pide ayuda con un favor.", "choices": ["comer", "ayudar", "correr"], "answer": "ayudar", "confirmed": false },
+            { "type": "vocabulary", "word": "Korb", "meaning": "cesta", "context": "La panadera te entrega una cesta de mimbre con pan.", "choices": ["llave", "carta", "cesta"], "answer": "cesta", "confirmed": false },
+            { "type": "vocabulary", "word": "Norden", "meaning": "norte", "context": "La panadera señala hacia el camino del norte donde está la salida.", "choices": ["sur", "norte", "este"], "answer": "norte", "confirmed": false },
+            { "type": "start_quest", "quest_id": "favor_panadera", "title": "Pan para el leñador", "desc": "Lleva la cesta de pan al guardia en el camino al bosque." },
+            { "type": "give_item", "item_id": "cesta_pan" },
+            { "type": "set_objective", "objective": "Lleva la cesta de pan de la panadera al guardia Karl en el camino norte hacia el bosque." }
+          ],
+          "lines": [
+            { "text": "Kannst du mir helfen?", "icon": "res://assets/art/ui/vocab/vocab_helfen.png", "icon_word": "helfen" },
+            { "text": "Hier ist der Korb.", "icon": "res://assets/art/ui/vocab/vocab_korb.png", "icon_word": "Korb" },
+            { "text": "Brot für Fritz.", "icon": "res://assets/art/ui/vocab/vocab_brot.png", "icon_word": "Brot" },
+            { "text": "Geh nach Norden.", "icon": "res://assets/art/ui/vocab/vocab_norden.png", "icon_word": "Norden" },
+            "Zu Karl."
+          ]
+        },
+        {
+          "condition": {
+            "zone_unlocked": "bosque"
+          },
+          "context": "La panadera sonríe con alivio y gratitud al saber que el camino está abierto.",
+          "portrait": "res://assets/art/portraits/anim/panadera_agradecida_talk_3f.png",
+          "effects": [
+            { "type": "vocabulary", "word": "Danke", "meaning": "gracias", "context": "La panadera te da las gracias con una cálida sonrisa.", "choices": ["por favor", "adiós", "gracias"], "answer": "gracias", "confirmed": false }
+          ],
+          "lines": [
+            "Danke!",
+            { "text": "Der Weg ist offen.", "icon": "res://assets/art/ui/vocab/vocab_weg.png", "icon_word": "Weg" }
+          ]
+        },
+        {
+          "condition": {
+            "quest": "favor_panadera",
+            "quest_status": "active"
+          },
+          "context": "La panadera te anima a continuar hacia el norte para hablar con el guardia.",
+          "portrait": "res://assets/art/portraits/anim/panadera_amable_talk_3f.png",
+          "effects": [],
+          "lines": [
+            { "text": "Der Korb. Zu Karl.", "icon": "res://assets/art/ui/vocab/vocab_korb.png", "icon_word": "Korb" },
+            { "text": "Geh nach Norden.", "icon": "res://assets/art/ui/vocab/vocab_norden.png", "icon_word": "Norden" }
+          ]
+        },
+        {
+          "condition": { "relationship": "friendly" },
+          "context": "La panadera señala el pan recién horneado y una jarra de agua fresca en su puesto.",
+          "portrait": "res://assets/art/portraits/anim/panadera_amable_talk_3f.png",
+          "effects": [
+            { "type": "vocabulary", "word": "Guten Morgen", "meaning": "buenos días", "context": "La panadera te saluda amablemente.", "choices": ["buenas noches", "buenos días", "gracias"], "answer": "buenos días", "confirmed": false },
+            { "type": "vocabulary", "word": "Brot", "meaning": "pan", "context": "La panadera ofrece pan caliente mientras pronuncia la palabra.", "choices": ["agua", "pan", "bosque"], "answer": "pan", "confirmed": false },
+            { "type": "vocabulary", "word": "Wasser", "meaning": "agua", "context": "La panadera te ofrece agua fresca de su jarra.", "choices": ["llave", "camino", "agua"], "answer": "agua", "confirmed": false }
+          ],
+          "lines": [
+            "Guten Morgen!",
+            { "text": "Das ist Brot.", "icon": "res://assets/art/ui/vocab/vocab_brot.png", "icon_word": "Brot" },
+            { "text": "Das ist Wasser.", "icon": "res://assets/art/ui/vocab/vocab_wasser.png", "icon_word": "Wasser" }
+          ]
+        },
+        {
+          "condition": {},
+          "context": "La panadera continúa ordenando sus panes.",
+          "portrait": "res://assets/art/portraits/anim/panadera_amable_talk_3f.png",
+          "effects": [
+            { "type": "vocabulary", "word": "Hallo", "meaning": "hola", "context": "La panadera inicia la conversación con un saludo.", "choices": ["adiós", "hola", "gracias"], "answer": "hola", "confirmed": false },
+            { "type": "vocabulary", "word": "Brot", "meaning": "pan", "context": "La panadera te muestra el pan.", "choices": ["agua", "pan", "bosque"], "answer": "pan", "confirmed": false },
+            { "type": "vocabulary", "word": "Wasser", "meaning": "agua", "context": "La panadera menciona el agua junto al pan.", "choices": ["llave", "camino", "agua"], "answer": "agua", "confirmed": false }
+          ],
+          "lines": [
+            "Hallo!",
+            { "text": "Das ist Brot.", "icon": "res://assets/art/ui/vocab/vocab_brot.png", "icon_word": "Brot" },
+            { "text": "Das ist Wasser.", "icon": "res://assets/art/ui/vocab/vocab_wasser.png", "icon_word": "Wasser" }
+          ]
+        }
+      ]
+    },
+    "guardia": {
+      "variants": [
+        {
+          "condition": {
+            "quest": "favor_panadera",
+            "quest_status": "active",
+            "item": "cesta_pan"
+          },
+          "context": "El guardia examina la cesta de pan de la panadera y asiente con aprobación.",
+          "portrait": "res://assets/art/portraits/anim/guardia_aprobador_talk_3f.png",
+          "gesture": "res://assets/art/characters/npcs/npc_guardia_gesto_aprobar.png",
+          "effects": [
+            { "type": "vocabulary", "word": "öffnen", "meaning": "abrir", "context": "El guardia dice «öffne» (abro) y retira la barrera para abrirte el paso.", "choices": ["cerrar", "abrir", "subir"], "answer": "abrir", "confirmed": false },
+            { "type": "vocabulary", "word": "Achtung", "meaning": "¡cuidado!", "context": "El guardia te advierte del bosque con gesto serio.", "choices": ["¡cuidado!", "gracias", "hola"], "answer": "¡cuidado!", "confirmed": false },
+            { "type": "vocabulary", "word": "Brücke", "meaning": "puente", "context": "El guardia menciona el puente: Fritz, en el bosque, sabe más.", "choices": ["torre", "puente", "muro"], "answer": "puente", "confirmed": false },
+            { "type": "take_item", "item_id": "cesta_pan" },
+            { "type": "complete_quest", "quest_id": "favor_panadera" },
+            { "type": "unlock_zone", "zone": "bosque" },
+            { "type": "unlock_fragment", "fragment_id": "fragment_2" },
+            { "type": "set_objective", "objective": "El camino al bosque está abierto. Cruza la barrera norte hacia el bosque." }
+          ],
+          "lines": [
+            { "text": "Halt! Brot? Von Helga?", "icon": "res://assets/art/ui/vocab/vocab_brot.png", "icon_word": "Brot" },
+            "Gut.",
+            "Ich öffne den Weg.",
+            { "text": "Achtung im Wald!", "icon": "res://assets/art/ui/vocab/vocab_wald.png", "icon_word": "Wald" },
+            "Die Brücke."
+          ]
+        },
+        {
+          "condition": {
+            "zone_unlocked": "bosque"
+          },
+          "context": "El guardia vigila tranquilamente el camino abierto hacia el bosque.",
+          "portrait": "res://assets/art/portraits/anim/guardia_aprobador_talk_3f.png",
+          "gesture": "res://assets/art/characters/npcs/npc_guardia_gesto_aprobar.png",
+          "effects": [],
+          "lines": [
+            { "text": "Der Weg ist offen.", "icon": "res://assets/art/ui/vocab/vocab_weg.png", "icon_word": "Weg" },
+            { "text": "Achtung im Wald!", "icon": "res://assets/art/ui/vocab/vocab_wald.png", "icon_word": "Wald" }
+          ]
+        },
+        {
+          "condition": { "relationship": "wary" },
+          "context": "El guardia mantiene la salida del bosque cerrada pero señala el camino del pueblo.",
+          "portrait": "res://assets/art/portraits/anim/guardia_desconfiado_talk_3f.png",
+          "effects": [
+            { "type": "vocabulary", "word": "Halt", "meaning": "alto", "context": "El guardia levanta la mano y bloquea tu paso.", "choices": ["ven", "gracias", "alto"], "answer": "alto", "confirmed": false },
+            { "type": "vocabulary", "word": "Wald", "meaning": "bosque", "context": "El guardia señala el camino cerrado hacia los árboles.", "choices": ["bosque", "río", "pan"], "answer": "bosque", "confirmed": false },
+            { "type": "vocabulary", "word": "Weg", "meaning": "camino", "context": "El guardia te indica con firmeza el camino permitido dentro de la aldea.", "choices": ["casa", "camino", "fuente"], "answer": "camino", "confirmed": false }
+          ],
+          "lines": [
+            { "text": "Halt!", "icon": "res://assets/art/ui/vocab/vocab_halt.png", "icon_word": "Halt" },
+            "Wer bist du?",
+            { "text": "Wald? Nein.", "icon": "res://assets/art/ui/vocab/vocab_wald.png", "icon_word": "Wald" },
+            { "text": "Der Weg ist zu.", "icon": "res://assets/art/ui/vocab/vocab_weg.png", "icon_word": "Weg" }
+          ]
+        },
+        {
+          "condition": {},
+          "context": "El guardia observa el camino al bosque.",
+          "portrait": "res://assets/art/portraits/anim/guardia_desconfiado_talk_3f.png",
+          "effects": [
+            { "type": "vocabulary", "word": "Weg", "meaning": "camino", "context": "El guardia señala una dirección con la mano.", "choices": ["casa", "camino", "fuente"], "answer": "camino", "confirmed": false }
+          ],
+          "lines": [
+            { "text": "Der Weg ist zu.", "icon": "res://assets/art/ui/vocab/vocab_weg.png", "icon_word": "Weg" }
+          ]
+        }
+      ]
+    },
+    "nina": {
+      "variants": [
+        {
+          "condition": { "flag": "leni_met" },
+          "context": "Leni vuelve a señalar la fuente y te indica que está en el centro de la plaza.",
+          "portrait": "res://assets/art/portraits/anim/nina_curiosa_talk_3f.png",
+          "gesture": "res://assets/art/characters/npcs/npc_nina_gesto_senalar.png",
+          "effects": [
+            { "type": "vocabulary", "word": "Mitte", "meaning": "centro", "context": "Leni indica que la fuente está en el centro de la plaza.", "choices": ["bosque", "casa", "centro"], "answer": "centro", "confirmed": false }
+          ],
+          "lines": [
+            "Der Brunnen ist in der Mitte."
+          ]
+        },
+        {
+          "condition": { "relationship": "neutral" },
+          "context": "La niña señala la fuente de la plaza con curiosidad y sonríe al verla.",
+          "portrait": "res://assets/art/portraits/anim/nina_curiosa_talk_3f.png",
+          "gesture": "res://assets/art/characters/npcs/npc_nina_gesto_senalar.png",
+          "effects": [
+            { "type": "vocabulary", "word": "Brunnen", "meaning": "fuente", "context": "Leni señala la fuente de piedra de la plaza.", "choices": ["puerta", "fuente", "pan"], "answer": "fuente", "confirmed": false },
+            { "type": "vocabulary", "word": "schön", "meaning": "bonito/a", "context": "Leni sonríe al mirar la fuente.", "choices": ["cerrado", "bonito/a", "frío/a"], "answer": "bonito/a", "confirmed": false },
+            { "type": "set_flag", "flag": "leni_met", "value": true }
+          ],
+          "lines": [
+            "Hallo! Ich bin Leni.",
+            "Der Brunnen.",
+            { "text": "Der Brunnen ist schön.", "portrait": "res://assets/art/portraits/anim/nina_alegre_talk_3f.png" }
+          ]
+        },
+        {
+          "condition": {},
+          "context": "La niña se queda cerca de la plaza.",
+          "portrait": "res://assets/art/portraits/anim/nina_curiosa_talk_3f.png",
+          "gesture": "res://assets/art/characters/npcs/npc_nina_gesto_senalar.png",
+          "effects": [
+            { "type": "vocabulary", "word": "schön", "meaning": "bonito/a", "context": "Leni sonríe al mirar la fuente.", "choices": ["cerrado", "bonito/a", "frío/a"], "answer": "bonito/a", "confirmed": false }
+          ],
+          "lines": [
+            "Der Brunnen ist schön."
+          ]
+        }
+      ]
+    }
+  }
+}

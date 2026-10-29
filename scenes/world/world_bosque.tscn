@@ -313,15 +313,15 @@ one_shot = true
 [node name="ControlsPanel" type="PanelContainer" parent="HUD"]
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 420.0
-offset_bottom = 54.0
+offset_right = 20.0
+offset_bottom = 20.0
 theme_override_styles/panel = SubResource("notice_style")
 
 [node name="ControlsLabel" type="Label" parent="HUD/ControlsPanel"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.94, 0.77, 0.9)
 theme_override_font_sizes/font_size = 14
-text = "[N] Libreta   [C] Carta   [E] Hablar   [F5] Guardar"
+text = "[N] Libreta   [C] Carta   [E] Hablar   [F5] Guardar   [R] Menú"
 horizontal_alignment = 1
 vertical_alignment = 1
 

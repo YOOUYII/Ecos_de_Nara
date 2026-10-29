@@ -1,0 +1,75 @@
+{
+  "language": "es",
+  "concepts": {
+    "wood": {"meaning": "madera", "choices": ["hierro", "madera", "piedra"], "answer": "madera"},
+    "bridge": {"meaning": "puente", "choices": ["torre", "puente", "muro"], "answer": "puente"},
+    "key": {"meaning": "llave", "choices": ["moneda", "llave", "cuerda"], "answer": "llave"},
+    "help": {"meaning": "ayudar", "choices": ["comer", "ayudar", "correr"], "answer": "ayudar"},
+    "basket": {"meaning": "cesta", "choices": ["llave", "carta", "cesta"], "answer": "cesta"},
+    "north": {"meaning": "norte", "choices": ["sur", "norte", "este"], "answer": "norte"},
+    "thanks": {"meaning": "gracias", "choices": ["por favor", "adiós", "gracias"], "answer": "gracias"},
+    "good_morning": {"meaning": "buenos días", "choices": ["buenas noches", "buenos días", "gracias"], "answer": "buenos días"},
+    "bread": {"meaning": "pan", "choices": ["agua", "pan", "bosque"], "answer": "pan"},
+    "water": {"meaning": "agua", "choices": ["llave", "camino", "agua"], "answer": "agua"},
+    "hello": {"meaning": "hola", "choices": ["adiós", "hola", "gracias"], "answer": "hola"},
+    "open": {"meaning": "abrir", "choices": ["cerrar", "abrir", "subir"], "answer": "abrir"},
+    "careful": {"meaning": "¡cuidado!", "choices": ["¡cuidado!", "gracias", "hola"], "answer": "¡cuidado!"},
+    "stop": {"meaning": "alto", "choices": ["ven", "gracias", "alto"], "answer": "alto"},
+    "forest": {"meaning": "bosque", "choices": ["bosque", "río", "pan"], "answer": "bosque"},
+    "way": {"meaning": "camino", "choices": ["casa", "camino", "fuente"], "answer": "camino"},
+    "middle": {"meaning": "centro", "choices": ["bosque", "casa", "centro"], "answer": "centro"},
+    "fountain": {"meaning": "fuente", "choices": ["puerta", "fuente", "pan"], "answer": "fuente"},
+    "nice": {"meaning": "bonito/a", "choices": ["cerrado", "bonito/a", "frío/a"], "answer": "bonito/a"},
+    "answer": {"meaning": "respuesta", "choices": ["pregunta", "respuesta", "secreto"], "answer": "respuesta"},
+    "home": {"meaning": "casa", "choices": ["río", "bosque", "casa"], "answer": "casa"},
+    "fish": {"meaning": "pez", "choices": ["pájaro", "pez", "árbol"], "answer": "pez"}
+  },
+  "contexts": {
+    "lenador.v0.wood": "Fritz describe su oficio con la madera.",
+    "lenador.v0.bridge": "Fritz señala el puente que cruza al río.",
+    "lenador.v0.key": "Fritz entrega una llave para el acceso al río.",
+    "panadera.v0.help": "La panadera te pide ayuda con un favor.",
+    "panadera.v0.basket": "La panadera te entrega una cesta de mimbre con pan.",
+    "panadera.v0.north": "La panadera señala hacia el camino del norte donde está la salida.",
+    "panadera.v1.thanks": "La panadera te da las gracias con una cálida sonrisa.",
+    "panadera.v3.good_morning": "La panadera te saluda amablemente.",
+    "panadera.v3.bread": "La panadera ofrece pan caliente mientras pronuncia la palabra.",
+    "panadera.v3.water": "La panadera te ofrece agua fresca de su jarra.",
+    "panadera.v4.hello": "La panadera inicia la conversación con un saludo.",
+    "panadera.v4.bread": "La panadera te muestra el pan.",
+    "panadera.v4.water": "La panadera menciona el agua junto al pan.",
+    "guardia.v0.open": "El guardia retira la barrera y te abre el paso.",
+    "guardia.v0.careful": "El guardia te advierte del bosque con gesto serio.",
+    "guardia.v0.bridge": "El guardia menciona el puente: Fritz, en el bosque, sabe más.",
+    "guardia.v2.stop": "El guardia levanta la mano y bloquea tu paso.",
+    "guardia.v2.forest": "El guardia señala el camino cerrado hacia los árboles.",
+    "guardia.v2.way": "El guardia te indica con firmeza el camino permitido dentro de la aldea.",
+    "guardia.v3.way": "El guardia señala una dirección con la mano.",
+    "nina.v0.middle": "Leni indica que la fuente está en el centro de la plaza.",
+    "nina.v1.fountain": "Leni señala la fuente de piedra de la plaza.",
+    "nina.v1.nice": "Leni sonríe al mirar la fuente.",
+    "nina.v2.nice": "Leni sonríe al mirar la fuente.",
+    "pescadora.v1.answer": "Maren dice que tiene la respuesta sobre el puente.",
+    "pescadora.v1.home": "Maren te aconseja volver a casa.",
+    "pescadora.v1.fish": "Maren muestra un pez y señala bajo el puente.",
+    "guardia.v0.open@de": "El guardia dice «öffne» (abro) y retira la barrera para abrirte el paso.",
+    "pescadora.v1.home@de": "Maren dice «nach Hause» (a casa): Hause solo existe en esa frase."
+  },
+  "letter": {
+    "fragment_1": {
+      "title": "Fragmento I — El Camino y el Agua",
+      "translation": "Querido amigo, debes encontrar el camino al río. El agua muestra la verdad.",
+      "hint": "La panadera y el guardia conocen los caminos. Habla con ellos y averigua cómo llegar al río."
+    },
+    "fragment_2": {
+      "title": "Fragmento II — El Leñador y el Puente",
+      "translation": "El leñador conoce el puente. Pregunta por la llave.",
+      "hint": "Explora el bosque y busca al leñador."
+    },
+    "fragment_3": {
+      "title": "Fragmento III — La Respuesta en el Río",
+      "translation": "Bajo el puente está la respuesta. Ve a casa.",
+      "hint": "Acércate a la orilla del río y encuentra lo que hay bajo el puente."
+    }
+  }
+}

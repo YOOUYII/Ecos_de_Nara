@@ -1,0 +1,137 @@
+{
+  "_doc": "Vocabulario permitido en inglés (idioma a aprender). kind: target | function | name | transparent. anchor_pending=true: el ancla visual depende de arte listado en ARTE_PENDIENTE.md.",
+  "rewritten_npcs": ["panadera", "guardia", "nina", "lenador", "pescadora"],
+  "limits": {"max_words_per_line": 6, "max_target_words_per_variant": 3},
+  "banned_tokens": ["was", "were", "been", "had", "did", "went", "would", "could"],
+  "words": {
+    "hello": {
+      "kind": "target",
+      "lemma": "Hello",
+      "forms": ["hello"],
+      "anchor": "gesto idle + retrato amable",
+      "anchor_pending": true
+    },
+    "morning": {
+      "kind": "target",
+      "lemma": "Good morning",
+      "forms": ["morning"],
+      "anchor": "saludo con retrato amable",
+      "anchor_pending": true
+    },
+    "bread": {"kind": "target", "lemma": "bread", "forms": ["bread"], "anchor": "pictograma vocab_brot"},
+    "water": {"kind": "target", "lemma": "water", "forms": ["water"], "anchor": "pictograma vocab_wasser"},
+    "help": {"kind": "target", "lemma": "help", "forms": ["help"], "anchor": "pictograma vocab_helfen"},
+    "basket": {"kind": "target", "lemma": "basket", "forms": ["basket"], "anchor": "pictograma vocab_korb"},
+    "north": {"kind": "target", "lemma": "north", "forms": ["north"], "anchor": "pictograma vocab_norden"},
+    "thanks": {"kind": "target", "lemma": "Thanks", "forms": ["thanks"], "anchor": "retrato agradecida", "anchor_pending": true},
+    "road": {"kind": "target", "lemma": "road", "forms": ["road"], "anchor": "pictograma vocab_weg"},
+    "stop": {"kind": "target", "lemma": "Stop", "forms": ["stop"], "anchor": "pictograma vocab_halt"},
+    "forest": {"kind": "target", "lemma": "forest", "forms": ["forest"], "anchor": "pictograma vocab_wald"},
+    "open": {
+      "kind": "target",
+      "lemma": "open",
+      "forms": ["open"],
+      "anchor": "animación de barrera (arte J)",
+      "anchor_pending": true
+    },
+    "careful": {
+      "kind": "target",
+      "lemma": "Careful",
+      "forms": ["careful"],
+      "anchor": "pictograma achtung (arte A)",
+      "anchor_pending": true
+    },
+    "fountain": {
+      "kind": "target",
+      "lemma": "fountain",
+      "forms": ["fountain"],
+      "anchor": "gesto señalar de Leni hacia la fuente",
+      "anchor_pending": true
+    },
+    "middle": {
+      "kind": "target",
+      "lemma": "middle",
+      "forms": ["middle"],
+      "anchor": "gesto señalar de Leni (pictograma mitte pendiente)"
+    },
+    "beautiful": {
+      "kind": "target",
+      "lemma": "beautiful",
+      "forms": ["beautiful"],
+      "anchor": "retrato alegre + pictograma schoen pendiente",
+      "anchor_pending": true
+    },
+    "wood": {
+      "kind": "target",
+      "lemma": "wood",
+      "forms": ["wood"],
+      "anchor": "gesto cortar + pictograma holz pendiente",
+      "anchor_pending": true
+    },
+    "bridge": {
+      "kind": "target",
+      "lemma": "bridge",
+      "forms": ["bridge"],
+      "anchor": "gesto señalar (arte H) + pictograma bruecke pendiente",
+      "anchor_pending": true
+    },
+    "key": {
+      "kind": "target",
+      "lemma": "key",
+      "forms": ["key"],
+      "anchor": "gesto entregar + llave en inventario; pictograma schluessel pendiente",
+      "anchor_pending": true
+    },
+    "fish": {
+      "kind": "target",
+      "lemma": "fish",
+      "forms": ["fish"],
+      "anchor": "gesto pescar + pictograma fisch pendiente",
+      "anchor_pending": true
+    },
+    "answer": {
+      "kind": "target",
+      "lemma": "answer",
+      "forms": ["answer"],
+      "anchor": "retrato reveladora + pictograma antwort pendiente",
+      "anchor_pending": true
+    },
+    "home": {
+      "kind": "target",
+      "lemma": "home",
+      "forms": ["home"],
+      "anchor": "pictograma haus pendiente",
+      "anchor_pending": true
+    },
+    "amulet": {"kind": "transparent"},
+    "fritz": {"kind": "name"},
+    "karl": {"kind": "name"},
+    "helga": {"kind": "name"},
+    "leni": {"kind": "name"},
+    "maren": {"kind": "name"},
+    "i": {"kind": "function"},
+    "am": {"kind": "function"},
+    "this": {"kind": "function"},
+    "is": {"kind": "function"},
+    "the": {"kind": "function"},
+    "here": {"kind": "function"},
+    "for": {"kind": "function"},
+    "to": {"kind": "function"},
+    "go": {"kind": "function"},
+    "you": {"kind": "function"},
+    "can": {"kind": "function"},
+    "me": {"kind": "function"},
+    "from": {"kind": "function"},
+    "who": {"kind": "function"},
+    "are": {"kind": "function"},
+    "no": {"kind": "function"},
+    "ask": {"kind": "function"},
+    "in": {"kind": "function"},
+    "under": {"kind": "function"},
+    "good": {"kind": "function"},
+    "friend": {"kind": "function"},
+    "safe": {"kind": "function"},
+    "travels": {"kind": "function"},
+    "closed": {"kind": "function"}
+  }
+}

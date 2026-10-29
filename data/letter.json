@@ -1,0 +1,7 @@
+{
+  "fragments": [
+    {"id": "fragment_1", "initial_status": "discovered", "required_concepts": ["way", "water"]},
+    {"id": "fragment_2", "initial_status": "locked", "required_concepts": ["bridge", "key"]},
+    {"id": "fragment_3", "initial_status": "locked", "required_concepts": ["answer", "home"]}
+  ]
+}

@@ -17,6 +17,7 @@ func _ready() -> void:
 	add_child(notebook_panel)
 	notebook_panel.close_requested.connect(close_notebook)
 	notebook_panel.guess_requested.connect(try_confirm_entry)
+	Lang.language_changed.connect(refresh_gloss)
 
 
 func add_or_update_entry(
@@ -42,9 +43,65 @@ func add_or_update_entry(
 		notebook_panel.show_notebook(get_entries(), last_feedback)
 
 
+## Un efecto con `concept` toma la palabra del paquete de contenido y el significado, las opciones y el
+## contexto del paquete de glosa. Un efecto con `word` y `meaning` incrustados se sigue aceptando.
+func _register_concept_effect(effect: Dictionary) -> void:
+	var concept := str(effect.get("concept", ""))
+	var word := Lang.word_for(concept)
+	var gloss := Lang.concept_gloss(concept)
+	if word.is_empty() or gloss.is_empty():
+		push_warning("Concepto sin palabra o sin glosa (%s/%s): %s" % [Lang.target, Lang.native, concept])
+		return
+	var meaning := str(gloss.get("meaning", ""))
+	var context_id := str(effect.get("context_id", ""))
+	add_or_update_entry(
+		word,
+		meaning,
+		Lang.context_text(context_id),
+		bool(effect.get("confirmed", false)),
+		_to_string_array(gloss.get("choices", [])),
+		str(gloss.get("answer", meaning))
+	)
+	var entry := entries_by_key.get(word.to_lower().strip_edges()) as VocabularyEntry
+	if entry:
+		entry.concept = concept
+		entry.context_id = context_id
+
+
+## Reaplica la glosa del idioma principal actual a las entradas que tienen concepto.
+func refresh_gloss() -> void:
+	for entry in entries_by_key.values():
+		var voc := entry as VocabularyEntry
+		if voc == null or voc.concept.is_empty():
+			continue
+		var gloss := Lang.concept_gloss(voc.concept)
+		if gloss.is_empty():
+			continue
+		var meaning := str(gloss.get("meaning", ""))
+		voc.update(
+			meaning,
+			Lang.context_text(voc.context_id),
+			false,
+			_to_string_array(gloss.get("choices", [])),
+			str(gloss.get("answer", meaning))
+		)
+	vocabulary_changed.emit()
+	if is_open:
+		notebook_panel.show_notebook(get_entries(), last_feedback)
+
+
+func _to_string_array(values: Array) -> Array[String]:
+	var out: Array[String] = []
+	for value in values:
+		out.append(str(value))
+	return out
+
+
 func register_effects(effects: Array) -> void:
 	for effect in effects:
-		if effect is Dictionary and effect.get("type", "vocabulary") == "vocabulary":
+		if effect is Dictionary and effect.has("concept") and effect.get("type", "vocabulary") == "vocabulary":
+			_register_concept_effect(effect)
+		elif effect is Dictionary and effect.get("type", "vocabulary") == "vocabulary":
 			var choices: Array[String] = []
 			for choice in effect.get("choices", []):
 				choices.append(str(choice))
@@ -70,6 +127,16 @@ func get_entries() -> Array[VocabularyEntry]:
 	return entries
 
 
+## Conceptos cuya palabra el jugador ya confirmó (independiente del idioma que se aprende).
+func get_confirmed_concepts() -> Array[String]:
+	var confirmed: Array[String] = []
+	for entry in entries_by_key.values():
+		var voc := entry as VocabularyEntry
+		if voc and voc.is_confirmed and not voc.concept.is_empty() and not confirmed.has(voc.concept):
+			confirmed.append(voc.concept)
+	return confirmed
+
+
 func get_confirmed_words() -> Array[String]:
 	var confirmed: Array[String] = []
 	for entry in entries_by_key.values():
@@ -91,9 +158,9 @@ func try_confirm_entry(word: String, guess: String) -> void:
 	if entry == null:
 		return
 	if entry.try_confirm(guess):
-		last_feedback = "¡Correcto! %s significa %s." % [entry.german, entry.spanish_meaning]
+		last_feedback = tr("¡Correcto! %s significa %s.") % [entry.german, entry.spanish_meaning]
 	else:
-		last_feedback = "Esa hipótesis no encaja todavía. Observa de nuevo el contexto."
+		last_feedback = tr("Esa hipótesis no encaja todavía. Observa de nuevo el contexto.")
 	vocabulary_changed.emit()
 	if is_open:
 		notebook_panel.show_notebook(get_entries(), last_feedback)
@@ -135,7 +202,9 @@ func serialize() -> Dictionary:
 				"is_confirmed": entry.is_confirmed,
 				"choices": entry.choices.duplicate(),
 				"correct_answer": entry.correct_answer,
-				"order_index": entry.order_index
+				"order_index": entry.order_index,
+				"concept": entry.concept,
+				"context_id": entry.context_id
 			})
 	return {
 		"entry_sequence": _entry_sequence,
@@ -161,9 +230,14 @@ func deserialize(data: Dictionary) -> void:
 				str(item.get("correct_answer", ""))
 			)
 			entry.order_index = int(item.get("order_index", 0))
+			entry.concept = str(item.get("concept", ""))
+			entry.context_id = str(item.get("context_id", ""))
+			# Guardados anteriores no traen concepto: se deduce de la palabra.
+			if entry.concept.is_empty():
+				entry.concept = Lang.concept_for_word(entry.german)
 			var key := entry.german.to_lower().strip_edges()
 			entries_by_key[key] = entry
-	vocabulary_changed.emit()
+	refresh_gloss()
 
 
 func reset() -> void:

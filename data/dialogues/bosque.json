@@ -3,65 +3,55 @@
     "lenador": {
       "variants": [
         {
-          "condition": {
-            "quest": "favor_lenador",
-            "quest_status": "not_started"
-          },
+          "condition": {"quest": "favor_lenador", "quest_status": "not_started"},
           "portrait": "res://assets/art/portraits/anim/lenador_agradecido_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_cortar.png",
           "lines": [
-            "Hallo! Ich bin Fritz.",
-            "Das ist Holz.",
-            "Die Brücke.",
-            { "text": "Achtung!", "portrait": "res://assets/art/portraits/anim/lenador_cansado_talk_3f.png" },
-            { "text": "Der Schlüssel.", "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_entregar.png" },
-            "Frag Maren."
+            "lenador.v0.l0",
+            "lenador.v0.l1",
+            "lenador.v0.l2",
+            {"id": "lenador.v0.l3", "portrait": "res://assets/art/portraits/anim/lenador_cansado_talk_3f.png"},
+            {"id": "lenador.v0.l4", "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_entregar.png"},
+            "lenador.v0.l5"
           ],
           "effects": [
-            { "type": "start_quest", "quest_id": "favor_lenador", "title": "Info del puente", "desc": "Habla con la pescadora Maren sobre el puente roto." },
-            { "type": "give_item", "item_id": "llave_rio" },
-            { "type": "unlock_zone", "zone": "rio" },
-            { "type": "set_objective", "objective": "Busca a la pescadora Maren en el río, al este del bosque. Fritz necesita información sobre el puente." },
-            { "type": "vocabulary", "word": "Holz", "meaning": "madera", "context": "Fritz describe su oficio con la madera.", "choices": ["hierro", "madera", "piedra"], "answer": "madera", "confirmed": false },
-            { "type": "vocabulary", "word": "Brücke", "meaning": "puente", "context": "Fritz señala el puente que cruza al río.", "choices": ["torre", "puente", "muro"], "answer": "puente", "confirmed": false },
-            { "type": "vocabulary", "word": "Schlüssel", "meaning": "llave", "context": "Fritz entrega una llave para el acceso al río.", "choices": ["moneda", "llave", "cuerda"], "answer": "llave", "confirmed": false },
-            { "type": "set_flag", "flag": "met_fritz" }
+            {
+              "type": "start_quest",
+              "quest_id": "favor_lenador",
+              "title": "Info del puente",
+              "desc": "Habla con la pescadora Maren sobre el puente roto."
+            },
+            {"type": "give_item", "item_id": "llave_rio"},
+            {"type": "unlock_zone", "zone": "rio"},
+            {
+              "type": "set_objective",
+              "objective": "Busca a la pescadora Maren en el río, al este del bosque. Fritz necesita información sobre el puente."
+            },
+            {"type": "vocabulary", "concept": "wood", "context_id": "lenador.v0.wood"},
+            {"type": "vocabulary", "concept": "bridge", "context_id": "lenador.v0.bridge"},
+            {"type": "vocabulary", "concept": "key", "context_id": "lenador.v0.key"},
+            {"type": "set_flag", "flag": "met_fritz"}
           ]
         },
         {
-          "condition": {
-            "quest": "favor_lenador",
-            "quest_status": "active"
-          },
+          "condition": {"quest": "favor_lenador", "quest_status": "active"},
           "portrait": "res://assets/art/portraits/anim/lenador_cansado_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_cortar.png",
-          "lines": [
-            "Frag Maren.",
-            "Die Brücke."
-          ],
+          "lines": ["lenador.v1.l0", "lenador.v1.l1"],
           "effects": []
         },
         {
-          "condition": {
-            "quest": "favor_lenador",
-            "quest_status": "completed"
-          },
+          "condition": {"quest": "favor_lenador", "quest_status": "completed"},
           "portrait": "res://assets/art/portraits/anim/lenador_agradecido_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_entregar.png",
-          "lines": [
-            "Danke, Freund!",
-            "Du bist gut."
-          ],
+          "lines": ["lenador.v2.l0", "lenador.v2.l1"],
           "effects": []
         },
         {
           "condition": {},
           "portrait": "res://assets/art/portraits/anim/lenador_cansado_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_cortar.png",
-          "lines": [
-            "Hallo! Ich bin Fritz.",
-            { "text": "Achtung im Wald!", "icon": "res://assets/art/ui/vocab/vocab_wald.png", "icon_word": "Wald" }
-          ],
+          "lines": ["lenador.v3.l0", {"id": "lenador.v3.l1", "icon": "res://assets/art/ui/vocab/vocab_wald.png"}],
           "effects": []
         }
       ]

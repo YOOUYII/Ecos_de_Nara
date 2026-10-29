@@ -17,6 +17,6 @@ func _select(character_type: String) -> void:
 	begin_button.disabled = false
 	begin_button.grab_focus()
 	if character_type == GameManager.CHARACTER_FORASTERO:
-		selection_label.text = "Has elegido al forastero."
+		selection_label.text = tr("Has elegido al forastero.")
 	else:
-		selection_label.text = "Has elegido a la forastera."
+		selection_label.text = tr("Has elegido a la forastera.")

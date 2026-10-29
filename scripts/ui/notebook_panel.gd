@@ -21,7 +21,7 @@ func show_notebook(entries: Array[VocabularyEntry], feedback := "") -> void:
 	_clear_entries()
 	feedback_label.text = feedback
 	if entries.is_empty():
-		_add_text_card("Aún no has anotado palabras. Habla con los habitantes del pueblo.")
+		_add_text_card(tr("Aún no has anotado palabras. Habla con los habitantes del pueblo."))
 	else:
 		for entry in entries:
 			_add_vocabulary_card(entry)
@@ -64,7 +64,7 @@ func _add_vocabulary_card(entry: VocabularyEntry) -> void:
 	content.add_child(word_label)
 
 	var context_label := Label.new()
-	context_label.text = "Pista visual: %s" % entry.context
+	context_label.text = tr("Pista visual: %s") % entry.context
 	context_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	context_label.add_theme_font_size_override("font_size", 16)
 	context_label.add_theme_color_override("font_color", Color(0.28, 0.18, 0.1, 1.0))
@@ -72,13 +72,13 @@ func _add_vocabulary_card(entry: VocabularyEntry) -> void:
 
 	if entry.is_confirmed:
 		var confirmed_label := Label.new()
-		confirmed_label.text = "Confirmada: %s" % entry.spanish_meaning
+		confirmed_label.text = tr("Confirmada: %s") % entry.spanish_meaning
 		confirmed_label.add_theme_font_size_override("font_size", 18)
 		confirmed_label.add_theme_color_override("font_color", Color(0.12, 0.36, 0.2, 1.0))
 		content.add_child(confirmed_label)
 	else:
 		var hypothesis_label := Label.new()
-		hypothesis_label.text = "Hipótesis: ¿qué significa?"
+		hypothesis_label.text = tr("Hipótesis: ¿qué significa?")
 		hypothesis_label.add_theme_font_size_override("font_size", 17)
 		hypothesis_label.add_theme_color_override("font_color", Color(0.48, 0.26, 0.08, 1.0))
 		content.add_child(hypothesis_label)

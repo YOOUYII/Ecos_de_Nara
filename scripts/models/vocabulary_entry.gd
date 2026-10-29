@@ -9,6 +9,10 @@ var is_confirmed := false
 var choices: Array[String] = []
 var correct_answer := ""
 var order_index: int = 0
+## Concepto del paquete de idiomas y ID del contexto; vacíos en entradas antiguas.
+## `spanish_meaning` es el significado en el idioma principal (hoy español).
+var concept := ""
+var context_id := ""
 
 
 func _init(

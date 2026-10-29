@@ -26,6 +26,7 @@ Videojuego narrativo 2D de exploración y aprendizaje contextual de alemán. El 
 | Interactuar | E |
 | Abrir libreta | N |
 | Pausa | Esc |
+| Volver al menú de inicio (con confirmación; el progreso no guardado se pierde) | R |
 
 ## Estructura inicial
 

@@ -29,7 +29,7 @@ func _on_rio_transition_body_entered(body: Node2D) -> void:
 		if StoryProgress.can_enter(StoryProgress.ZONE_RIO):
 			GameManager.change_zone("rio", Vector2(80, 360), "right")
 		else:
-			_show_notice("El camino al río está cerrado.\nEl leñador Fritz podría ayudarte.")
+			_show_notice(tr("El camino al río está cerrado.\nEl leñador Fritz podría ayudarte."))
 
 
 func _on_npc_interaction_requested(npc: Npc) -> void:
@@ -42,16 +42,16 @@ func _on_npc_interaction_cancelled(npc: Npc) -> void:
 
 
 func _on_fragment_translated(fragment: LetterFragment) -> void:
-	_show_notice("¡Has traducido el %s!\nRevisa tu carta con [C]." % fragment.title)
+	_show_notice(tr("¡Has traducido el %s!\nRevisa tu carta con [C].") % fragment.title)
 
 
 func _on_fragment_unlocked(fragment: LetterFragment) -> void:
-	_show_notice("¡Nuevo fragmento en la carta!\nPúlsa [C] para examinarlo.")
+	_show_notice(tr("¡Nuevo fragmento en la carta!\nPúlsa [C] para examinarlo."))
 
 
 func _on_zone_unlocked(zone_name: String) -> void:
 	if zone_name == StoryProgress.ZONE_RIO:
-		_show_notice("¡Camino al río desbloqueado!\nFritz te ha dado la llave para continuar al este.")
+		_show_notice(tr("¡Camino al río desbloqueado!\nFritz te ha dado la llave para continuar al este."))
 
 
 func _show_notice(message: String) -> void:

@@ -1,0 +1,6 @@
+{
+  "de": {"name": "Deutsch", "content": true, "gloss": true},
+  "es": {"name": "Español", "content": true, "gloss": true},
+  "en": {"name": "English", "content": true, "gloss": true},
+  "eo": {"name": "Esperanto", "content": true, "gloss": true}
+}

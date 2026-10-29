@@ -105,7 +105,7 @@ func _process_dialogue_effects(effects: Array) -> void:
 		match effect_type:
 			"start_quest":
 				var q_id := str(eff.get("quest_id", ""))
-				StoryProgress.start_quest(q_id, str(eff.get("title", "")), str(eff.get("desc", "")))
+				StoryProgress.start_quest(q_id, tr(str(eff.get("title", ""))), tr(str(eff.get("desc", ""))))
 			"complete_quest":
 				var q_id := str(eff.get("quest_id", ""))
 				StoryProgress.complete_quest(q_id)
@@ -135,18 +135,12 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 
-## Una línea puede ser un String o un Dictionary {text, portrait?, icon?, icon_word?, gesture?}.
+## Una línea del JSON es el ID de una línea del paquete de contenido (texto del idioma que se
+## aprende), un String literal o un Dictionary {id | text, portrait?, icon?, icon_word?, gesture?}.
 func _show_current_line() -> void:
-	var raw: Variant = current_lines[current_line_index]
-	var text := ""
-	var portrait_path := current_portrait_path
-	var extras: Dictionary = {}
-	if raw is Dictionary:
-		extras = raw
-		text = str(extras.get("text", ""))
-		portrait_path = str(extras.get("portrait", portrait_path))
-	else:
-		text = str(raw)
+	var extras: Dictionary = Lang.resolve_line(current_lines[current_line_index])
+	var text := str(extras.get("text", ""))
+	var portrait_path := str(extras.get("portrait", current_portrait_path))
 	var line_gesture := str(extras.get("gesture", ""))
 	if not line_gesture.is_empty():
 		var gesture_tex := load(line_gesture) as Texture2D
@@ -154,7 +148,7 @@ func _show_current_line() -> void:
 			current_npc.set_gesture_sheet(gesture_tex)
 			current_npc.play_context_gesture()
 	dialogue_box.show_line(
-		current_npc.display_name,
+		tr(current_npc.display_name),
 		text,
 		portrait_path,
 		current_line_index == current_lines.size() - 1,

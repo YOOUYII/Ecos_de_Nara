@@ -1,8 +1,8 @@
 extends Node
 
 ## Autoload de la Carta Misteriosa (Letter).
-## Gestiona los fragmentos de texto en alemán que el jugador debe traducir
-## asociando palabras confirmadas de su libreta para desbloquear progreso narrativo.
+## Gestiona los fragmentos de texto en el idioma que se aprende que el jugador debe traducir
+## asociando conceptos confirmados de su libreta para desbloquear progreso narrativo.
 
 signal fragment_translated(fragment: LetterFragment)
 signal fragment_unlocked(fragment: LetterFragment)
@@ -10,6 +10,7 @@ signal letter_opened
 signal letter_closed
 
 const LETTER_PANEL_SCENE := preload("res://scenes/ui/letter_panel.tscn")
+const LETTER_DATA_PATH := "res://data/letter.json"
 
 var is_open := false
 var letter_panel: LetterPanel
@@ -24,58 +25,49 @@ func _ready() -> void:
 
 	# Se conecta a la libreta para evaluar automáticamente si se pueden traducir fragmentos
 	Notebook.vocabulary_changed.connect(_on_vocabulary_changed)
+	# Al elegir o restaurar los idiomas de una partida, los fragmentos se reconstruyen en ellos.
+	Lang.language_changed.connect(_init_fragments)
 
 
+## Reconstruye los fragmentos: estructura en data/letter.json (IDs, estado inicial y conceptos
+## requeridos), texto en el idioma que se aprende y título, traducción y pista en el principal.
+## Solo se llama al empezar una partida o al cargarla, nunca con la partida en curso (los idiomas están bloqueados).
 func _init_fragments() -> void:
 	fragments.clear()
-
-	# Fragmento 1: Descubierto desde el inicio. Requiere "Weg" (camino) y "Wasser" (agua)
-	var frag1 := LetterFragment.new(
-		"fragment_1",
-		"Fragmento I — El Camino y el Agua",
-		"Lieber Freund, du musst den Weg zum Fluss finden. Das Wasser zeigt die Wahrheit.",
-		"Querido amigo, debes encontrar el camino al río. El agua muestra la verdad.",
-		["weg", "wasser"],
-		LetterFragment.Status.DISCOVERED,
-		"La panadera y el guardia conocen los caminos. Habla con ellos y averigua cómo llegar al río."
-	)
-	fragments.append(frag1)
-
-	# Fragmento 2: Bloqueado (Sección 8/9, en el bosque)
-	var frag2 := LetterFragment.new(
-		"fragment_2",
-		"Fragmento II — El Leñador y el Puente",
-		"Der Holzfäller kennt die Brücke. Frage nach dem Schlüssel.",
-		"El leñador conoce el puente. Pregunta por la llave.",
-		["brücke", "schlüssel"],
-		LetterFragment.Status.LOCKED,
-		"Explora el bosque y busca al leñador."
-	)
-	fragments.append(frag2)
-
-	# Fragmento 3: Bloqueado (Sección 9, en el río)
-	var frag3 := LetterFragment.new(
-		"fragment_3",
-		"Fragmento III — La Respuesta en el Río",
-		"Unter der Brücke liegt die Antwort. Geh nach Hause.",
-		"Bajo el puente está la respuesta. Ve a casa.",
-		["antwort", "hause"],
-		LetterFragment.Status.LOCKED,
-		"Acércate a la orilla del río y encuentra lo que hay bajo el puente."
-	)
-	fragments.append(frag3)
+	var data: Variant = JSON.parse_string(FileAccess.get_file_as_string(LETTER_DATA_PATH))
+	if not (data is Dictionary):
+		push_error("No se pudo leer la estructura de la carta: %s" % LETTER_DATA_PATH)
+		return
+	for item in (data as Dictionary).get("fragments", []):
+		var fragment_id := str(item.get("id", ""))
+		var gloss := Lang.letter_gloss(fragment_id)
+		var concepts: Array[String] = []
+		for concept in item.get("required_concepts", []):
+			concepts.append(str(concept))
+		var initial := LetterFragment.Status.LOCKED
+		if str(item.get("initial_status", "locked")) == "discovered":
+			initial = LetterFragment.Status.DISCOVERED
+		fragments.append(LetterFragment.new(
+			fragment_id,
+			str(gloss.get("title", fragment_id)),
+			Lang.letter_text(fragment_id),
+			str(gloss.get("translation", "")),
+			concepts,
+			initial,
+			str(gloss.get("hint", ""))
+		))
 
 
 func _on_vocabulary_changed() -> void:
-	var confirmed_words := Notebook.get_confirmed_words()
+	var confirmed := Notebook.get_confirmed_concepts()
 	for fragment in fragments:
 		if fragment.is_discovered():
 			var was_translated := fragment.is_translated()
-			if fragment.check_translation(confirmed_words) and not was_translated:
+			if fragment.check_translation(confirmed) and not was_translated:
 				_on_fragment_translated(fragment)
 
 	if is_open:
-		letter_panel.show_letter(fragments, confirmed_words)
+		letter_panel.show_letter(fragments, confirmed)
 
 
 func _on_fragment_translated(fragment: LetterFragment) -> void:
@@ -104,7 +96,7 @@ func open_letter() -> void:
 	if DialogueManager.is_dialogue_open or Notebook.is_open:
 		return
 	is_open = true
-	letter_panel.show_letter(fragments, Notebook.get_confirmed_words())
+	letter_panel.show_letter(fragments, Notebook.get_confirmed_concepts())
 	letter_opened.emit()
 
 
