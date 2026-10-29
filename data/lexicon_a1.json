@@ -1,0 +1,51 @@
+{
+  "_doc": "Vocabulario permitido por NPC reescrito. kind: target (se enseña), function (palabra funcional A1 muy frecuente), name (nombre propio). anchor_pending=true: el ancla visual depende de arte listado en ARTE_PENDIENTE.md.",
+  "rewritten_npcs": ["panadera", "guardia", "nina", "lenador", "pescadora"],
+  "limits": { "max_words_per_line": 6, "max_target_words_per_variant": 3 },
+  "banned_tokens": ["hat", "hast", "habe", "haben", "versperrt", "reisender", "nachricht", "seltsam", "zeichen", "geschichten", "fremder", "gefährlich"],
+  "words": {
+    "hallo":    { "kind": "target", "lemma": "Hallo", "forms": ["hallo"], "anchor": "gesto idle + retrato amable", "anchor_pending": true },
+    "guten":    { "kind": "target", "lemma": "Guten Morgen", "forms": ["guten", "morgen"], "anchor": "saludo con retrato amable", "anchor_pending": true },
+    "morgen":   { "kind": "target", "lemma": "Guten Morgen", "forms": ["guten", "morgen"], "anchor": "saludo con retrato amable", "anchor_pending": true },
+    "brot":     { "kind": "target", "lemma": "Brot", "forms": ["brot"], "anchor": "pictograma vocab_brot" },
+    "wasser":   { "kind": "target", "lemma": "Wasser", "forms": ["wasser"], "anchor": "pictograma vocab_wasser" },
+    "helfen":   { "kind": "target", "lemma": "helfen", "forms": ["helfen"], "anchor": "pictograma vocab_helfen" },
+    "korb":     { "kind": "target", "lemma": "Korb", "forms": ["korb"], "anchor": "pictograma vocab_korb" },
+    "norden":   { "kind": "target", "lemma": "Norden", "forms": ["norden"], "anchor": "pictograma vocab_norden" },
+    "danke":    { "kind": "target", "lemma": "Danke", "forms": ["danke"], "anchor": "retrato agradecida", "anchor_pending": true },
+    "weg":      { "kind": "target", "lemma": "Weg", "forms": ["weg"], "anchor": "pictograma vocab_weg" },
+    "halt":     { "kind": "target", "lemma": "Halt", "forms": ["halt"], "anchor": "pictograma vocab_halt" },
+    "wald":     { "kind": "target", "lemma": "Wald", "forms": ["wald"], "anchor": "pictograma vocab_wald" },
+    "öffne":    { "kind": "target", "lemma": "öffnen", "forms": ["öffne"], "anchor": "animación de barrera (arte J)", "anchor_pending": true },
+    "achtung":  { "kind": "target", "lemma": "Achtung", "forms": ["achtung"], "anchor": "pictograma achtung (arte A)", "anchor_pending": true },
+
+    "brunnen":  { "kind": "target", "lemma": "Brunnen", "forms": ["brunnen"], "anchor": "gesto señalar de Leni hacia la fuente", "anchor_pending": true },
+    "mitte":    { "kind": "target", "lemma": "Mitte", "forms": ["mitte"], "anchor": "gesto señalar de Leni (pictograma mitte pendiente)" },
+    "schön":    { "kind": "target", "lemma": "schön", "forms": ["schön"], "anchor": "retrato alegre + pictograma schoen pendiente", "anchor_pending": true },
+
+    "holz":     { "kind": "target", "lemma": "Holz", "forms": ["holz"], "anchor": "gesto cortar + pictograma holz pendiente", "anchor_pending": true },
+    "brücke":   { "kind": "target", "lemma": "Brücke", "forms": ["brücke"], "anchor": "gesto señalar (arte H) + pictograma bruecke pendiente", "anchor_pending": true },
+    "schlüssel": { "kind": "target", "lemma": "Schlüssel", "forms": ["schlüssel"], "anchor": "gesto entregar + llave en inventario; pictograma schluessel pendiente", "anchor_pending": true },
+
+    "fisch":    { "kind": "target", "lemma": "Fisch", "forms": ["fisch"], "anchor": "gesto pescar + pictograma fisch pendiente (arte I mostrar_pez)", "anchor_pending": true },
+    "antwort":  { "kind": "target", "lemma": "Antwort", "forms": ["antwort"], "anchor": "retrato reveladora + pictograma antwort pendiente", "anchor_pending": true },
+    "hause":    { "kind": "target", "lemma": "Hause", "forms": ["hause"], "anchor": "frase fija 'nach Hause' + pictograma haus pendiente; clave 'hause' exigida por letter.gd", "anchor_pending": true },
+    "amulett":  { "kind": "transparent" },
+
+    "maren": { "kind": "name" },
+    "leni": { "kind": "name" },
+    "fritz": { "kind": "name" },
+    "karl":  { "kind": "name" },
+    "helga": { "kind": "name" },
+
+    "das": { "kind": "function" }, "ist": { "kind": "function" }, "der": { "kind": "function" },
+    "den": { "kind": "function" }, "ich": { "kind": "function" }, "du": { "kind": "function" },
+    "mir": { "kind": "function" }, "bist": { "kind": "function" }, "wer": { "kind": "function" },
+    "hier": { "kind": "function" }, "nach": { "kind": "function" }, "zu": { "kind": "function" },
+    "für": { "kind": "function" }, "von": { "kind": "function" }, "im": { "kind": "function" },
+    "kannst": { "kind": "function" }, "geh": { "kind": "function" }, "gut": { "kind": "function" },
+    "nein": { "kind": "function" }, "offen": { "kind": "function" }, "in": { "kind": "function" }, "bin": { "kind": "function" },
+    "die": { "kind": "function" }, "frag": { "kind": "function" }, "freund": { "kind": "function" },
+    "unter": { "kind": "function" }, "gute": { "kind": "function" }, "reise": { "kind": "function" }
+  }
+}

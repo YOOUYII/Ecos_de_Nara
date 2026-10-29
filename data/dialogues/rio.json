@@ -9,9 +9,10 @@
           "portrait": "res://assets/art/portraits/anim/pescadora_reveladora_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_senalar.png",
           "lines": [
-            "Das Amulett von Nara! Du hast es gefunden!",
-            "Die alten Geschichten waren wahr. Die Antwort lag die ganze Zeit im Fluss.",
-            "Du hast unsere Sprache und unser Land verstanden. Gute Reise nach Hause, Freund!"
+            "Das Amulett!",
+            "Du bist gut.",
+            "Danke, Freund!",
+            "Gute Reise!"
           ],
           "effects": []
         },
@@ -20,23 +21,23 @@
             "quest": "favor_lenador",
             "quest_status": "active"
           },
-          "portrait": "res://assets/art/portraits/anim/pescadora_reveladora_talk_3f.png",
+          "portrait": "res://assets/art/portraits/anim/pescadora_cautelosa_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_senalar.png",
           "lines": [
-            "Wer bist du? Fritz schickt dich?",
-            "Ich bin Maren, die Fischerin. Der Fluss ist mein Zuhause.",
-            "Die Brücke? Ja, ich kenne die Antwort...",
-            "Unter der Brücke liegt ein alter Fisch... ein Zeichen.",
-            "Sag Fritz: Die Antwort ist im Wasser. Geh nach Hause und denk nach."
+            "Wer bist du?",
+            "Fritz? Gut. Ich bin Maren.",
+            { "text": "Fisch.", "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_pescar.png" },
+            { "text": "Unter der Brücke.", "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_senalar.png" },
+            { "text": "Die Antwort.", "portrait": "res://assets/art/portraits/anim/pescadora_reveladora_talk_3f.png" },
+            { "text": "Geh nach Hause.", "portrait": "res://assets/art/portraits/anim/pescadora_reveladora_talk_3f.png" }
           ],
           "effects": [
             { "type": "complete_quest", "quest_id": "favor_lenador" },
             { "type": "unlock_fragment", "fragment_id": "fragment_3" },
             { "type": "set_objective", "objective": "Has completado los favores. Revisa tu carta (C) — quizá puedas traducir nuevos fragmentos." },
             { "type": "vocabulary", "word": "Antwort", "meaning": "respuesta", "context": "Maren dice que tiene la respuesta sobre el puente.", "choices": ["pregunta", "respuesta", "secreto"], "answer": "respuesta", "confirmed": false },
-            { "type": "vocabulary", "word": "Hause", "meaning": "casa", "context": "Maren aconseja volver a casa y reflexionar.", "choices": ["río", "bosque", "casa"], "answer": "casa", "confirmed": false },
-            { "type": "vocabulary", "word": "Fisch", "meaning": "pez", "context": "Maren habla de un viejo pez bajo el puente.", "choices": ["pájaro", "pez", "árbol"], "answer": "pez", "confirmed": false },
-            { "type": "vocabulary", "word": "Fluss", "meaning": "río", "context": "Maren señala el río como su hogar.", "choices": ["montaña", "río", "camino"], "answer": "río", "confirmed": false },
+            { "type": "vocabulary", "word": "Hause", "meaning": "casa", "context": "Maren dice «nach Hause» (a casa): Hause solo existe en esa frase.", "choices": ["río", "bosque", "casa"], "answer": "casa", "confirmed": false },
+            { "type": "vocabulary", "word": "Fisch", "meaning": "pez", "context": "Maren muestra un pez y señala bajo el puente.", "choices": ["pájaro", "pez", "árbol"], "answer": "pez", "confirmed": false },
             { "type": "set_flag", "flag": "met_maren" }
           ]
         },
@@ -48,9 +49,9 @@
           "portrait": "res://assets/art/portraits/anim/pescadora_cautelosa_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_pescar.png",
           "lines": [
-            "Du bist zurück? Der Fluss ist ruhig heute.",
-            "Denk an die Antwort... sie liegt unter der Brücke.",
-            "Fisch und Wasser — das ist mein Leben hier am Fluss."
+            "Fisch.",
+            "Unter der Brücke.",
+            "Die Antwort."
           ],
           "effects": []
         },
@@ -59,8 +60,8 @@
           "portrait": "res://assets/art/portraits/anim/pescadora_cautelosa_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_pescar.png",
           "lines": [
-            "Ein Fremder am Fluss? Seltsam...",
-            "Ich bin Maren. Was willst du hier?"
+            "Wer bist du?",
+            "Ich bin Maren."
           ],
           "effects": []
         }

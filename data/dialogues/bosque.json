@@ -8,14 +8,14 @@
             "quest_status": "not_started"
           },
           "portrait": "res://assets/art/portraits/anim/lenador_agradecido_talk_3f.png",
-          "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_entregar.png",
+          "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_cortar.png",
           "lines": [
-            "Hallo, Reisender! Helga hat mir schon eine Nachricht geschickt. Danke!",
-            "Ich bin Fritz, der Holzfäller. Holz ist mein Leben.",
-            "Du suchst den Fluss? Die Brücke ist dort drüben...",
-            "Aber Vorsicht — der Weg ist gefährlich.",
-            "Ich gebe dir den Schlüssel zum Tor am Fluss.",
-            "Kannst du die Fischerin Maren finden? Sie weiß mehr über die Brücke."
+            "Hallo! Ich bin Fritz.",
+            "Das ist Holz.",
+            "Die Brücke.",
+            { "text": "Achtung!", "portrait": "res://assets/art/portraits/anim/lenador_cansado_talk_3f.png" },
+            { "text": "Der Schlüssel.", "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_entregar.png" },
+            "Frag Maren."
           ],
           "effects": [
             { "type": "start_quest", "quest_id": "favor_lenador", "title": "Info del puente", "desc": "Habla con la pescadora Maren sobre el puente roto." },
@@ -24,7 +24,6 @@
             { "type": "set_objective", "objective": "Busca a la pescadora Maren en el río, al este del bosque. Fritz necesita información sobre el puente." },
             { "type": "vocabulary", "word": "Holz", "meaning": "madera", "context": "Fritz describe su oficio con la madera.", "choices": ["hierro", "madera", "piedra"], "answer": "madera", "confirmed": false },
             { "type": "vocabulary", "word": "Brücke", "meaning": "puente", "context": "Fritz señala el puente que cruza al río.", "choices": ["torre", "puente", "muro"], "answer": "puente", "confirmed": false },
-            { "type": "vocabulary", "word": "gefährlich", "meaning": "peligroso", "context": "Fritz advierte sobre el camino al río.", "choices": ["hermoso", "tranquilo", "peligroso"], "answer": "peligroso", "confirmed": false },
             { "type": "vocabulary", "word": "Schlüssel", "meaning": "llave", "context": "Fritz entrega una llave para el acceso al río.", "choices": ["moneda", "llave", "cuerda"], "answer": "llave", "confirmed": false },
             { "type": "set_flag", "flag": "met_fritz" }
           ]
@@ -37,9 +36,8 @@
           "portrait": "res://assets/art/portraits/anim/lenador_cansado_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_cortar.png",
           "lines": [
-            "Hast du Maren gefunden?",
-            "Sie lebt am Fluss, im Osten. Frag sie nach der Brücke.",
-            "Die Brücke ist kaputt... Maren weiß warum."
+            "Frag Maren.",
+            "Die Brücke."
           ],
           "effects": []
         },
@@ -51,8 +49,8 @@
           "portrait": "res://assets/art/portraits/anim/lenador_agradecido_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_entregar.png",
           "lines": [
-            "Danke, Freund! Jetzt verstehe ich die Brücke besser.",
-            "Du bist willkommen im Wald. Holz und Schlüssel — vergiss das nicht!"
+            "Danke, Freund!",
+            "Du bist gut."
           ],
           "effects": []
         },
@@ -61,8 +59,8 @@
           "portrait": "res://assets/art/portraits/anim/lenador_cansado_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_cortar.png",
           "lines": [
-            "Hallo, Fremder. Ich bin Fritz.",
-            "Der Wald ist ruhig, aber pass auf dem Weg zum Fluss auf."
+            "Hallo! Ich bin Fritz.",
+            { "text": "Achtung im Wald!", "icon": "res://assets/art/ui/vocab/vocab_wald.png", "icon_word": "Wald" }
           ],
           "effects": []
         }

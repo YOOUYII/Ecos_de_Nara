@@ -71,6 +71,10 @@ func start_dialogue(npc: Npc) -> bool:
 func advance_dialogue() -> void:
 	if not is_dialogue_open:
 		return
+	# Primer avance mientras se escribe: completa la línea en lugar de saltarla.
+	if dialogue_box.is_typing():
+		dialogue_box.finish_typing()
+		return
 	current_line_index += 1
 	if current_line_index >= current_lines.size():
 		close_dialogue()
@@ -131,12 +135,30 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 
+## Una línea puede ser un String o un Dictionary {text, portrait?, icon?, icon_word?, gesture?}.
 func _show_current_line() -> void:
+	var raw: Variant = current_lines[current_line_index]
+	var text := ""
+	var portrait_path := current_portrait_path
+	var extras: Dictionary = {}
+	if raw is Dictionary:
+		extras = raw
+		text = str(extras.get("text", ""))
+		portrait_path = str(extras.get("portrait", portrait_path))
+	else:
+		text = str(raw)
+	var line_gesture := str(extras.get("gesture", ""))
+	if not line_gesture.is_empty():
+		var gesture_tex := load(line_gesture) as Texture2D
+		if gesture_tex != null:
+			current_npc.set_gesture_sheet(gesture_tex)
+			current_npc.play_context_gesture()
 	dialogue_box.show_line(
 		current_npc.display_name,
-		str(current_lines[current_line_index]),
-		current_portrait_path,
-		current_line_index == current_lines.size() - 1
+		text,
+		portrait_path,
+		current_line_index == current_lines.size() - 1,
+		extras
 	)
 
 

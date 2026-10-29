@@ -36,6 +36,18 @@ offset_bottom = 680.0
 theme_override_styles/panel = SubResource("dialogue_panel_style")
 mouse_filter = 0
 
+[node name="IconPopup" type="TextureRect" parent="DialogueRoot"]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 1088.0
+offset_top = 404.0
+offset_right = 1184.0
+offset_bottom = 500.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
 [node name="MarginContainer" type="MarginContainer" parent="DialogueRoot/Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
