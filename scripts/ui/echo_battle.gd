@@ -411,15 +411,8 @@ func _show_thanks_screen(vscreen: CanvasLayer) -> void:
 	thanks.modulate = Color(1, 1, 1, 0)
 	vscreen.add_child(thanks)
 
-	var credits := _make_vscreen_label(
-		tr("Desarrollado como proyecto universitario\nUniversidad Tecnológica de Bolívar — 2026"),
-		16, Color(0.50, 0.55, 0.65, 1.0), Vector2(0, 460)
-	)
-	credits.modulate = Color(1, 1, 1, 0)
-	vscreen.add_child(credits)
-
 	# Fade-in secuencial
-	for lbl in [title, subtitle, thanks, credits]:
+	for lbl in [title, subtitle, thanks]:
 		await _fade_in_label(lbl, 1.0)
 		await get_tree().create_timer(0.3).timeout
 
