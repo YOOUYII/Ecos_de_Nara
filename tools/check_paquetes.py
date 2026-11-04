@@ -74,11 +74,14 @@ def StoryDefault():
 def structure():
     """Líneas, conceptos y contextos que la estructura (diálogos y carta) exige a cada paquete."""
     lines, concepts, contexts = set(), set(), set()
+    icons = {}
     for dlg in sorted((ROOT / "data" / "dialogues").glob("*.json")):
         for npc in load(dlg)["dialogues"].values():
             for variant in npc["variants"]:
                 for raw in variant.get("lines", []):
                     lines.add(raw if isinstance(raw, str) else raw["id"])
+                    if isinstance(raw, dict) and raw.get("icon"):
+                        icons[raw["id"]] = raw["icon"]
                 for eff in variant.get("effects", []):
                     if eff.get("type") == "vocabulary" and eff.get("concept"):
                         concepts.add(eff["concept"])
@@ -88,7 +91,7 @@ def structure():
     fragments = [f["id"] for f in letter]
     for f in letter:
         concepts.update(f.get("required_concepts", []))
-    return lines, concepts, contexts, fragments
+    return lines, concepts, contexts, fragments, icons
 
 
 def main():
@@ -99,7 +102,7 @@ def main():
         print(f"{len(ids)} textos de interfaz")
         return 0
 
-    lines, concepts, contexts, fragments = structure()
+    lines, concepts, contexts, fragments, icons = structure()
     registry = load(ROOT / "data" / "languages.json")
     errors, warnings = [], []
 
@@ -113,6 +116,22 @@ def main():
             for fid in fragments:
                 if fid not in pack.get("letter", {}):
                     errors.append(f"content/{code}: falta el texto de la carta '{fid}'")
+            # Ícono: la estructura lo declara por línea; cada idioma aporta la palabra que lo activa (icon_word).
+            for lid, icon in sorted(icons.items()):
+                if not (ROOT / icon.replace("res://", "")).exists():
+                    errors.append(f"content/{code}: el ícono de '{lid}' no existe: {icon}")
+                entry = pack.get("lines", {}).get(lid)
+                if entry is None:
+                    continue  # ya se informó como línea ausente
+                text = entry if isinstance(entry, str) else entry.get("text", "")
+                word = "" if isinstance(entry, str) else entry.get("icon_word", "")
+                if not word:
+                    errors.append(f"content/{code}: la línea '{lid}' tiene ícono pero no 'icon_word'")
+                elif word not in text:
+                    errors.append(f"content/{code}: el icon_word '{word}' no está en el texto de '{lid}'")
+            for lid, entry in sorted(pack.get("lines", {}).items()):
+                if isinstance(entry, dict) and entry.get("icon_word") and lid in lines and lid not in icons:
+                    errors.append(f"content/{code}: la línea '{lid}' tiene icon_word pero la estructura no le pone ícono")
             for lid in sorted(set(pack.get("lines", {})) - lines):
                 warnings.append(f"content/{code}: línea sin uso '{lid}'")
         if info.get("gloss"):

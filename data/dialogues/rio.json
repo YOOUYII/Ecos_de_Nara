@@ -6,7 +6,12 @@
           "condition": {"flag": "demo_completed"},
           "portrait": "res://assets/art/portraits/anim/pescadora_reveladora_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_senalar.png",
-          "lines": ["pescadora.v0.l0", "pescadora.v0.l1", "pescadora.v0.l2", "pescadora.v0.l3"],
+          "lines": [
+            "pescadora.v0.l0",
+            "pescadora.v0.l1",
+            {"id": "pescadora.v0.l2", "icon": "res://assets/art/ui/vocab/vocab_danke.png"},
+            "pescadora.v0.l3"
+          ],
           "effects": []
         },
         {
@@ -16,10 +21,26 @@
           "lines": [
             "pescadora.v1.l0",
             "pescadora.v1.l1",
-            {"id": "pescadora.v1.l2", "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_pescar.png"},
-            {"id": "pescadora.v1.l3", "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_senalar.png"},
-            {"id": "pescadora.v1.l4", "portrait": "res://assets/art/portraits/anim/pescadora_reveladora_talk_3f.png"},
-            {"id": "pescadora.v1.l5", "portrait": "res://assets/art/portraits/anim/pescadora_reveladora_talk_3f.png"}
+            {
+              "id": "pescadora.v1.l2",
+              "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_pescar.png",
+              "icon": "res://assets/art/ui/vocab/vocab_fisch.png"
+            },
+            {
+              "id": "pescadora.v1.l3",
+              "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_senalar.png",
+              "icon": "res://assets/art/ui/vocab/vocab_bruecke.png"
+            },
+            {
+              "id": "pescadora.v1.l4",
+              "portrait": "res://assets/art/portraits/anim/pescadora_reveladora_talk_3f.png",
+              "icon": "res://assets/art/ui/vocab/vocab_antwort.png"
+            },
+            {
+              "id": "pescadora.v1.l5",
+              "portrait": "res://assets/art/portraits/anim/pescadora_reveladora_talk_3f.png",
+              "icon": "res://assets/art/ui/vocab/vocab_haus.png"
+            }
           ],
           "effects": [
             {"type": "complete_quest", "quest_id": "favor_lenador"},
@@ -38,7 +59,11 @@
           "condition": {"quest": "favor_lenador", "quest_status": "completed"},
           "portrait": "res://assets/art/portraits/anim/pescadora_cautelosa_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_pescadora_gesto_pescar.png",
-          "lines": ["pescadora.v2.l0", "pescadora.v2.l1", "pescadora.v2.l2"],
+          "lines": [
+            {"id": "pescadora.v2.l0", "icon": "res://assets/art/ui/vocab/vocab_fisch.png"},
+            {"id": "pescadora.v2.l1", "icon": "res://assets/art/ui/vocab/vocab_bruecke.png"},
+            {"id": "pescadora.v2.l2", "icon": "res://assets/art/ui/vocab/vocab_antwort.png"}
+          ],
           "effects": []
         },
         {

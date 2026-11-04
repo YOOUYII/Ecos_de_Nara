@@ -25,6 +25,7 @@ Notebook="*res://scripts/autoload/notebook.gd"
 Letter="*res://scripts/autoload/letter.gd"
 SaveManager="*res://scripts/autoload/save_manager.gd"
 MenuReturn="*res://scripts/autoload/menu_return.gd"
+AchievementBanner="*res://scripts/autoload/achievement_banner.gd"
 
 [display]
 

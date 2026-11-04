@@ -146,6 +146,9 @@
     "Habla con los habitantes del pueblo, anota vocabulario (N) y revisa tu carta (C).": "Talk to the villagers, note down vocabulary (N) and check your letter (C).",
     "¿Seguro que quieres volver al menú de inicio?\n(Tu progreso se perderá si no lo has guardado)": "Are you sure you want to go back to the main menu?\n(Your progress will be lost if you haven't saved it)",
     "Volver al menú": "Back to menu",
-    "Cancelar": "Cancel"
+    "Cancelar": "Cancel",
+    "¡Logro desbloqueado!": "Achievement unlocked!",
+    "Amuleto de Nara": "Amulet of Nara",
+    "Has descifrado la carta y resuelto el misterio.": "You deciphered the letter and solved the mystery."
   }
 }

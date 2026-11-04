@@ -4,111 +4,28 @@
   "limits": {"max_words_per_line": 6, "max_target_words_per_variant": 3},
   "banned_tokens": ["fue", "fui", "era", "había", "dijo", "tenía"],
   "words": {
-    "hola": {
-      "kind": "target",
-      "lemma": "Hola",
-      "forms": ["hola"],
-      "anchor": "gesto idle + retrato amable",
-      "anchor_pending": true
-    },
-    "días": {
-      "kind": "target",
-      "lemma": "Buenos días",
-      "forms": ["días"],
-      "anchor": "saludo con retrato amable",
-      "anchor_pending": true
-    },
+    "hola": {"kind": "target", "lemma": "Hola", "forms": ["hola"], "anchor": "pictograma vocab_hallo"},
+    "días": {"kind": "target", "lemma": "Buenos días", "forms": ["días"], "anchor": "pictograma vocab_guten_morgen"},
     "pan": {"kind": "target", "lemma": "pan", "forms": ["pan"], "anchor": "pictograma vocab_brot"},
     "agua": {"kind": "target", "lemma": "agua", "forms": ["agua"], "anchor": "pictograma vocab_wasser"},
     "ayudar": {"kind": "target", "lemma": "ayudar", "forms": ["ayudar"], "anchor": "pictograma vocab_helfen"},
     "cesta": {"kind": "target", "lemma": "cesta", "forms": ["cesta"], "anchor": "pictograma vocab_korb"},
     "norte": {"kind": "target", "lemma": "norte", "forms": ["norte"], "anchor": "pictograma vocab_norden"},
-    "gracias": {
-      "kind": "target",
-      "lemma": "Gracias",
-      "forms": ["gracias"],
-      "anchor": "retrato agradecida",
-      "anchor_pending": true
-    },
+    "gracias": {"kind": "target", "lemma": "Gracias", "forms": ["gracias"], "anchor": "pictograma vocab_danke"},
     "camino": {"kind": "target", "lemma": "camino", "forms": ["camino"], "anchor": "pictograma vocab_weg"},
     "alto": {"kind": "target", "lemma": "Alto", "forms": ["alto"], "anchor": "pictograma vocab_halt"},
     "bosque": {"kind": "target", "lemma": "bosque", "forms": ["bosque"], "anchor": "pictograma vocab_wald"},
-    "abro": {
-      "kind": "target",
-      "lemma": "abrir",
-      "forms": ["abro"],
-      "anchor": "animación de barrera (arte J)",
-      "anchor_pending": true
-    },
-    "cuidado": {
-      "kind": "target",
-      "lemma": "Cuidado",
-      "forms": ["cuidado"],
-      "anchor": "pictograma achtung (arte A)",
-      "anchor_pending": true
-    },
-    "fuente": {
-      "kind": "target",
-      "lemma": "fuente",
-      "forms": ["fuente"],
-      "anchor": "gesto señalar de Leni hacia la fuente",
-      "anchor_pending": true
-    },
-    "centro": {
-      "kind": "target",
-      "lemma": "centro",
-      "forms": ["centro"],
-      "anchor": "gesto señalar de Leni (pictograma mitte pendiente)"
-    },
-    "bonita": {
-      "kind": "target",
-      "lemma": "bonita",
-      "forms": ["bonita"],
-      "anchor": "retrato alegre + pictograma schoen pendiente",
-      "anchor_pending": true
-    },
-    "madera": {
-      "kind": "target",
-      "lemma": "madera",
-      "forms": ["madera"],
-      "anchor": "gesto cortar + pictograma holz pendiente",
-      "anchor_pending": true
-    },
-    "puente": {
-      "kind": "target",
-      "lemma": "puente",
-      "forms": ["puente"],
-      "anchor": "gesto señalar (arte H) + pictograma bruecke pendiente",
-      "anchor_pending": true
-    },
-    "llave": {
-      "kind": "target",
-      "lemma": "llave",
-      "forms": ["llave"],
-      "anchor": "gesto entregar + llave en inventario; pictograma schluessel pendiente",
-      "anchor_pending": true
-    },
-    "pez": {
-      "kind": "target",
-      "lemma": "pez",
-      "forms": ["pez"],
-      "anchor": "gesto pescar + pictograma fisch pendiente",
-      "anchor_pending": true
-    },
-    "respuesta": {
-      "kind": "target",
-      "lemma": "respuesta",
-      "forms": ["respuesta"],
-      "anchor": "retrato reveladora + pictograma antwort pendiente",
-      "anchor_pending": true
-    },
-    "casa": {
-      "kind": "target",
-      "lemma": "casa",
-      "forms": ["casa"],
-      "anchor": "pictograma haus pendiente",
-      "anchor_pending": true
-    },
+    "abro": {"kind": "target", "lemma": "abrir", "forms": ["abro"], "anchor": "pictograma vocab_oeffnen"},
+    "cuidado": {"kind": "target", "lemma": "Cuidado", "forms": ["cuidado"], "anchor": "pictograma vocab_achtung"},
+    "fuente": {"kind": "target", "lemma": "fuente", "forms": ["fuente"], "anchor": "pictograma vocab_brunnen"},
+    "centro": {"kind": "target", "lemma": "centro", "forms": ["centro"], "anchor": "pictograma vocab_mitte"},
+    "bonita": {"kind": "target", "lemma": "bonita", "forms": ["bonita"], "anchor": "pictograma vocab_schoen"},
+    "madera": {"kind": "target", "lemma": "madera", "forms": ["madera"], "anchor": "pictograma vocab_holz"},
+    "puente": {"kind": "target", "lemma": "puente", "forms": ["puente"], "anchor": "pictograma vocab_bruecke"},
+    "llave": {"kind": "target", "lemma": "llave", "forms": ["llave"], "anchor": "pictograma vocab_schluessel"},
+    "pez": {"kind": "target", "lemma": "pez", "forms": ["pez"], "anchor": "pictograma vocab_fisch"},
+    "respuesta": {"kind": "target", "lemma": "respuesta", "forms": ["respuesta"], "anchor": "pictograma vocab_antwort"},
+    "casa": {"kind": "target", "lemma": "casa", "forms": ["casa"], "anchor": "pictograma vocab_haus"},
     "amuleto": {"kind": "transparent"},
     "fritz": {"kind": "name"},
     "karl": {"kind": "name"},

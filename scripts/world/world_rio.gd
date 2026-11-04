@@ -49,6 +49,20 @@ func _inspect_bridge() -> void:
 	StoryProgress.set_objective("¡Misterio completado! Has descifrado la carta y encontrado el Amuleto de Nara.")
 	if is_instance_valid(amuleto_sprite):
 		amuleto_sprite.show()
+	# Animación de logro; al terminar se muestra el aviso con la pista final.
+	if is_instance_valid(amuleto_sprite) and not AchievementBanner.is_playing():
+		AchievementBanner.finished.connect(_show_amulet_notice, CONNECT_ONE_SHOT)
+		AchievementBanner.play(
+			amuleto_sprite.texture,
+			tr("¡Logro desbloqueado!"),
+			tr("Amuleto de Nara"),
+			tr("Has descifrado la carta y resuelto el misterio.")
+		)
+	else:
+		_show_amulet_notice()
+
+
+func _show_amulet_notice() -> void:
 	_show_notice(tr("¡Has encontrado el Amuleto de Nara bajo el puente!\n«Bajo el puente está la respuesta. Ve a casa.»\n¡Felicidades, has completado el misterio de la demo!"))
 
 

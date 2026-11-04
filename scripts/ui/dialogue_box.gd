@@ -11,7 +11,7 @@ const CHARS_PER_SECOND := 30.0
 @onready var dialogue_label: Label = $DialogueRoot/Panel/MarginContainer/Content/TextColumn/DialogueLabel
 @onready var portrait: TextureRect = $DialogueRoot/Panel/MarginContainer/Content/Portrait
 @onready var next_button: Button = $DialogueRoot/Panel/MarginContainer/Content/TextColumn/NextButton
-@onready var icon_popup: TextureRect = $DialogueRoot/IconPopup
+@onready var icon_popup: IconBubble = $DialogueRoot/IconPopup
 
 var _anim_timer: Timer
 var _talk_frames: Array[AtlasTexture] = []
@@ -50,6 +50,7 @@ func show_line(speaker: String, line: String, portrait_path: String, is_last_lin
 func hide_dialogue() -> void:
 	_cancel_typing()
 	_stop_portrait_animation()
+	icon_popup.stop_animation()
 	icon_popup.hide()
 	panel.hide()
 
@@ -89,19 +90,25 @@ func _cancel_typing() -> void:
 
 func _on_char_progress(count: int) -> void:
 	dialogue_label.visible_characters = count
-	if icon_popup.texture != null and not icon_popup.visible and count >= _icon_reveal_at:
-		icon_popup.show()
+	if count >= _icon_reveal_at:
+		_reveal_icon()
 
 
 func _on_typing_finished() -> void:
 	_typing = false
 	dialogue_label.visible_characters = -1
-	if icon_popup.texture != null:
-		icon_popup.show()
+	_reveal_icon()
 	_stop_portrait_animation()
 
 
+## Muestra la burbuja del pictograma (con rebote y latido) si la línea lo tiene y aún no se ha mostrado.
+func _reveal_icon() -> void:
+	if icon_popup.texture != null and not icon_popup.visible:
+		icon_popup.pop()
+
+
 func _prepare_icon(line: String, extras: Dictionary) -> void:
+	icon_popup.stop_animation()
 	icon_popup.hide()
 	icon_popup.texture = null
 	var icon_path := str(extras.get("icon", ""))

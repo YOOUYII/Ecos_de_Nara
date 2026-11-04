@@ -35,7 +35,10 @@
           "context": "La panadera sonríe con alivio y gratitud al saber que el camino está abierto.",
           "portrait": "res://assets/art/portraits/anim/panadera_agradecida_talk_3f.png",
           "effects": [{"type": "vocabulary", "concept": "thanks", "context_id": "panadera.v1.thanks"}],
-          "lines": ["panadera.v1.l0", {"id": "panadera.v1.l1", "icon": "res://assets/art/ui/vocab/vocab_weg.png"}]
+          "lines": [
+            {"id": "panadera.v1.l0", "icon": "res://assets/art/ui/vocab/vocab_danke.png"},
+            {"id": "panadera.v1.l1", "icon": "res://assets/art/ui/vocab/vocab_weg.png"}
+          ]
         },
         {
           "condition": {"quest": "favor_panadera", "quest_status": "active"},
@@ -57,7 +60,7 @@
             {"type": "vocabulary", "concept": "water", "context_id": "panadera.v3.water"}
           ],
           "lines": [
-            "panadera.v3.l0",
+            {"id": "panadera.v3.l0", "icon": "res://assets/art/ui/vocab/vocab_guten_morgen.png"},
             {"id": "panadera.v3.l1", "icon": "res://assets/art/ui/vocab/vocab_brot.png"},
             {"id": "panadera.v3.l2", "icon": "res://assets/art/ui/vocab/vocab_wasser.png"}
           ]
@@ -72,7 +75,7 @@
             {"type": "vocabulary", "concept": "water", "context_id": "panadera.v4.water"}
           ],
           "lines": [
-            "panadera.v4.l0",
+            {"id": "panadera.v4.l0", "icon": "res://assets/art/ui/vocab/vocab_hallo.png"},
             {"id": "panadera.v4.l1", "icon": "res://assets/art/ui/vocab/vocab_brot.png"},
             {"id": "panadera.v4.l2", "icon": "res://assets/art/ui/vocab/vocab_wasser.png"}
           ]
@@ -102,9 +105,9 @@
           "lines": [
             {"id": "guardia.v0.l0", "icon": "res://assets/art/ui/vocab/vocab_brot.png"},
             "guardia.v0.l1",
-            "guardia.v0.l2",
-            {"id": "guardia.v0.l3", "icon": "res://assets/art/ui/vocab/vocab_wald.png"},
-            "guardia.v0.l4"
+            {"id": "guardia.v0.l2", "icon": "res://assets/art/ui/vocab/vocab_oeffnen.png"},
+            {"id": "guardia.v0.l3", "icon": "res://assets/art/ui/vocab/vocab_achtung.png"},
+            {"id": "guardia.v0.l4", "icon": "res://assets/art/ui/vocab/vocab_bruecke.png"}
           ]
         },
         {
@@ -151,7 +154,7 @@
           "portrait": "res://assets/art/portraits/anim/nina_curiosa_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_nina_gesto_senalar.png",
           "effects": [{"type": "vocabulary", "concept": "middle", "context_id": "nina.v0.middle"}],
-          "lines": ["nina.v0.l0"]
+          "lines": [{"id": "nina.v0.l0", "icon": "res://assets/art/ui/vocab/vocab_mitte.png"}]
         },
         {
           "condition": {"relationship": "neutral"},
@@ -164,9 +167,13 @@
             {"type": "set_flag", "flag": "leni_met", "value": true}
           ],
           "lines": [
-            "nina.v1.l0",
-            "nina.v1.l1",
-            {"id": "nina.v1.l2", "portrait": "res://assets/art/portraits/anim/nina_alegre_talk_3f.png"}
+            {"id": "nina.v1.l0", "icon": "res://assets/art/ui/vocab/vocab_hallo.png"},
+            {"id": "nina.v1.l1", "icon": "res://assets/art/ui/vocab/vocab_brunnen.png"},
+            {
+              "id": "nina.v1.l2",
+              "portrait": "res://assets/art/portraits/anim/nina_alegre_talk_3f.png",
+              "icon": "res://assets/art/ui/vocab/vocab_schoen.png"
+            }
           ]
         },
         {
@@ -175,7 +182,7 @@
           "portrait": "res://assets/art/portraits/anim/nina_curiosa_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_nina_gesto_senalar.png",
           "effects": [{"type": "vocabulary", "concept": "nice", "context_id": "nina.v2.nice"}],
-          "lines": ["nina.v2.l0"]
+          "lines": [{"id": "nina.v2.l0", "icon": "res://assets/art/ui/vocab/vocab_schoen.png"}]
         }
       ]
     }

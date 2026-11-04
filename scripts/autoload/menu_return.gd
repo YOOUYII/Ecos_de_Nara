@@ -29,7 +29,7 @@ func can_open() -> bool:
 		return false
 	if not GameManager.ZONE_SCENES.values().has(scene.scene_file_path):
 		return false
-	return not (DialogueManager.is_dialogue_open or Notebook.is_open or Letter.is_open)
+	return not (DialogueManager.is_dialogue_open or Notebook.is_open or Letter.is_open or AchievementBanner.is_playing())
 
 
 func open() -> void:

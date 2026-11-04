@@ -2,15 +2,18 @@
 
 Recursos que la narrativa A1 progresiva necesita y que aún no existen. Mientras no estén, el diálogo usa el respaldo indicado.
 
+## Resuelto
+
+- **Pictogramas de vocabulario (A):** están los 22 que usa algún concepto (`assets/art/ui/vocab/`): `brot, wasser, halt, weg, wald, helfen, korb, norden, brunnen, mitte, schoen, holz, bruecke, schluessel, achtung, antwort, fisch, haus, hallo, danke, guten_morgen, oeffnen`. `dorf` y `fluss` se descartaron: ningún concepto ni línea los usa. Los avisos de "ancla pendiente" del lintador quedaron en 0 en los cuatro idiomas.
+- **Burbuja del pictograma (E):** dibujada por código (`scripts/ui/icon_bubble.gd`), con borde dorado, cola hacia el cuadro, rebote al aparecer y latido suave. No necesita archivo de arte.
+
 ## Prioridad alta
 
 | # | Recurso | Ruta propuesta | Detalle | Respaldo |
 |---|---|---|---|---|
-| A | 16 pictogramas de vocabulario restantes | `assets/art/ui/vocab/vocab_<palabra>.png` | 32x32, transparentes: `hallo, guten_morgen, oeffnen, dorf, danke, brunnen, mitte, schoen, holz, bruecke, achtung, schluessel, antwort, haus, fisch, fluss` | sin ícono |
 | B | Insignias de certeza 24x24 (hipótesis, probable, confirmada) | `assets/art/ui/ui_certeza_<nivel>.png` | para la libreta | texto del código |
 | C | Opciones de verificación (9-slice: normal, hover, correcta, incorrecta) | `assets/art/ui/ui_opcion_*_9slice.png` | botón con espacio para ícono | botón actual |
 | D | Tarjeta de palabra de la libreta (9-slice) | `assets/art/ui/ui_libreta_tarjeta_palabra_9slice.png` | | slot actual |
-| E | Burbuja con fondo para el pictograma flotante (9-slice) | `assets/art/ui/ui_burbuja_icono_9slice.png` | el pictograma se mezcla con el mapa sin fondo | ícono suelto |
 
 ## Prioridad baja
 

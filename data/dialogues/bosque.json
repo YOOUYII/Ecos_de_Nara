@@ -7,11 +7,19 @@
           "portrait": "res://assets/art/portraits/anim/lenador_agradecido_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_cortar.png",
           "lines": [
-            "lenador.v0.l0",
-            "lenador.v0.l1",
-            "lenador.v0.l2",
-            {"id": "lenador.v0.l3", "portrait": "res://assets/art/portraits/anim/lenador_cansado_talk_3f.png"},
-            {"id": "lenador.v0.l4", "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_entregar.png"},
+            {"id": "lenador.v0.l0", "icon": "res://assets/art/ui/vocab/vocab_hallo.png"},
+            {"id": "lenador.v0.l1", "icon": "res://assets/art/ui/vocab/vocab_holz.png"},
+            {"id": "lenador.v0.l2", "icon": "res://assets/art/ui/vocab/vocab_bruecke.png"},
+            {
+              "id": "lenador.v0.l3",
+              "portrait": "res://assets/art/portraits/anim/lenador_cansado_talk_3f.png",
+              "icon": "res://assets/art/ui/vocab/vocab_achtung.png"
+            },
+            {
+              "id": "lenador.v0.l4",
+              "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_entregar.png",
+              "icon": "res://assets/art/ui/vocab/vocab_schluessel.png"
+            },
             "lenador.v0.l5"
           ],
           "effects": [
@@ -37,21 +45,24 @@
           "condition": {"quest": "favor_lenador", "quest_status": "active"},
           "portrait": "res://assets/art/portraits/anim/lenador_cansado_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_cortar.png",
-          "lines": ["lenador.v1.l0", "lenador.v1.l1"],
+          "lines": ["lenador.v1.l0", {"id": "lenador.v1.l1", "icon": "res://assets/art/ui/vocab/vocab_bruecke.png"}],
           "effects": []
         },
         {
           "condition": {"quest": "favor_lenador", "quest_status": "completed"},
           "portrait": "res://assets/art/portraits/anim/lenador_agradecido_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_entregar.png",
-          "lines": ["lenador.v2.l0", "lenador.v2.l1"],
+          "lines": [{"id": "lenador.v2.l0", "icon": "res://assets/art/ui/vocab/vocab_danke.png"}, "lenador.v2.l1"],
           "effects": []
         },
         {
           "condition": {},
           "portrait": "res://assets/art/portraits/anim/lenador_cansado_talk_3f.png",
           "gesture": "res://assets/art/characters/npcs/npc_lenador_gesto_cortar.png",
-          "lines": ["lenador.v3.l0", {"id": "lenador.v3.l1", "icon": "res://assets/art/ui/vocab/vocab_wald.png"}],
+          "lines": [
+            {"id": "lenador.v3.l0", "icon": "res://assets/art/ui/vocab/vocab_hallo.png"},
+            {"id": "lenador.v3.l1", "icon": "res://assets/art/ui/vocab/vocab_wald.png"}
+          ],
           "effects": []
         }
       ]

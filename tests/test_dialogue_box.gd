@@ -38,12 +38,18 @@ func _run() -> void:
 	_check(not box.icon_popup.visible, "el icono no aparece antes de la palabra")
 	box._on_char_progress(12)
 	_check(box.icon_popup.visible, "el icono aparece al terminar la palabra")
+	_check(box.icon_popup.is_animating() and box.icon_popup.scale.x < 1.0, "la burbuja aparece con animación de rebote")
 	box.finish_typing()
 	_check(box.icon_popup.visible, "el icono sigue visible al terminar")
+	await create_timer(0.7).timeout
+	var pulse_scale: float = box.icon_popup.scale.x
+	_check(box.icon_popup.modulate.a > 0.99 and pulse_scale >= 0.99 and pulse_scale <= 1.08, "tras el rebote la burbuja queda a tamaño normal y late suavemente (%.3f)" % pulse_scale)
+	_check(box.icon_popup.is_animating(), "el latido sigue activo mientras se muestra")
 
 	# Una línea nueva oculta el icono de la anterior.
 	box.show_line("Helga", "Hallo!", PORTRAIT, true)
 	_check(not box.icon_popup.visible, "la línea nueva oculta el icono anterior")
+	_check(not box.icon_popup.is_animating() and box.icon_popup.scale == Vector2.ONE, "la línea nueva detiene la animación de la burbuja")
 	_check(box.next_button.text == "Cerrar", "última línea muestra Cerrar")
 
 	box.hide_dialogue()
