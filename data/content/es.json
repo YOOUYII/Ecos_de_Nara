@@ -1,4 +1,4 @@
-{
+﻿{
   "language": "es",
   "words": {
     "wood": "madera",
@@ -56,7 +56,7 @@
     "guardia.v0.l1": "Bien.",
     "guardia.v0.l2": {"text": "Abro el camino.", "icon_word": "Abro"},
     "guardia.v0.l3": {"text": "¡Cuidado en el bosque!", "icon_word": "Cuidado"},
-    "guardia.v0.l4": {"text": "El puente.", "icon_word": "puente"},
+    "guardia.v0.l4": {"text": "Fritz conoce el bosque.", "icon_word": "bosque"},
     "guardia.v1.l0": {"text": "El camino está abierto.", "icon_word": "camino"},
     "guardia.v1.l1": {"text": "¡Cuidado en el bosque!", "icon_word": "bosque"},
     "guardia.v2.l0": {"text": "¡Alto!", "icon_word": "Alto"},

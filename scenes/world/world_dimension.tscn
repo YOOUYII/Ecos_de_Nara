@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=4]
+
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://scripts/world/world_dimension.gd" id="2_world"]
+[ext_resource type="Script" path="res://scripts/ui/echo_battle.gd" id="3_battle"]
+
+[sub_resource type="RectangleShape2D" id="wall_h"]
+size = Vector2(1280, 32)
+
+[sub_resource type="RectangleShape2D" id="wall_v"]
+size = Vector2(32, 720)
+
+[node name="WorldDimension" type="Node2D"]
+script = ExtResource("2_world")
+
+[node name="Fondo" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, 0, 1280, 0, 1280, 720, 0, 720)
+color = Color(0.045, 0.06, 0.12, 1)
+
+[node name="Arena" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(160, 120, 1120, 120, 1200, 360, 1120, 600, 160, 600, 80, 360)
+color = Color(0.13, 0.19, 0.28, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(400, 330)
+
+[node name="Colisiones" type="Node2D" parent="."]
+
+[node name="Arriba" type="StaticBody2D" parent="Colisiones"]
+position = Vector2(640, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisiones/Arriba"]
+shape = SubResource("wall_h")
+
+[node name="Abajo" type="StaticBody2D" parent="Colisiones"]
+position = Vector2(640, 712)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisiones/Abajo"]
+shape = SubResource("wall_h")
+
+[node name="Izquierda" type="StaticBody2D" parent="Colisiones"]
+position = Vector2(8, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisiones/Izquierda"]
+shape = SubResource("wall_v")
+
+[node name="Derecha" type="StaticBody2D" parent="Colisiones"]
+position = Vector2(1272, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisiones/Derecha"]
+shape = SubResource("wall_v")
+
+[node name="EchoBattle" type="CanvasLayer" parent="."]
+script = ExtResource("3_battle")

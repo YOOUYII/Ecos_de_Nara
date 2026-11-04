@@ -1,4 +1,4 @@
-{
+﻿{
   "language": "en",
   "words": {
     "wood": "wood",
@@ -56,7 +56,7 @@
     "guardia.v0.l1": "Good.",
     "guardia.v0.l2": {"text": "I open the road.", "icon_word": "open"},
     "guardia.v0.l3": {"text": "Careful in the forest!", "icon_word": "Careful"},
-    "guardia.v0.l4": {"text": "The bridge.", "icon_word": "bridge"},
+    "guardia.v0.l4": {"text": "Fritz knows the forest.", "icon_word": "forest"},
     "guardia.v1.l0": {"text": "The road is open.", "icon_word": "road"},
     "guardia.v1.l1": {"text": "Careful in the forest!", "icon_word": "forest"},
     "guardia.v2.l0": {"text": "Stop!", "icon_word": "Stop"},

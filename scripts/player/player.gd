@@ -22,7 +22,8 @@ func _ready() -> void:
 		GameManager.spawn_position = Vector2.ZERO
 
 func _physics_process(_delta: float) -> void:
-	if DialogueManager.is_dialogue_open or Notebook.is_open or Letter.is_open:
+	# El combate final bloquea el desplazamiento para que las respuestas sean la única acción activa.
+	if DialogueManager.is_dialogue_open or Notebook.is_open or Letter.is_open or get_tree().get_first_node_in_group("echo_battle_active"):
 		velocity = Vector2.ZERO
 		_update_visual(Vector2.ZERO)
 		return

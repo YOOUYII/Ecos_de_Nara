@@ -10,6 +10,7 @@ const ZONE_SCENES := {
 	"pueblo": "res://scenes/world/world_test.tscn",
 	"bosque": "res://scenes/world/world_bosque.tscn",
 	"rio": "res://scenes/world/world_rio.tscn",
+	"dimension": "res://scenes/world/world_dimension.tscn",
 }
 
 var selected_character := ""

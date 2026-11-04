@@ -1,4 +1,4 @@
-{
+﻿{
   "language": "eo",
   "words": {
     "wood": "ligno",
@@ -56,7 +56,7 @@
     "guardia.v0.l1": "Bone.",
     "guardia.v0.l2": {"text": "Mi malfermas.", "icon_word": "malfermas"},
     "guardia.v0.l3": {"text": "Atentu en la arbaro!", "icon_word": "Atentu"},
-    "guardia.v0.l4": {"text": "La ponto.", "icon_word": "ponto"},
+    "guardia.v0.l4": {"text": "Fritz konas la arbaron.", "icon_word": "arbaro"},
     "guardia.v1.l0": {"text": "La vojo estas malferma.", "icon_word": "vojo"},
     "guardia.v1.l1": {"text": "Atentu en la arbaro!", "icon_word": "arbaro"},
     "guardia.v2.l0": {"text": "Haltu!", "icon_word": "Haltu"},
