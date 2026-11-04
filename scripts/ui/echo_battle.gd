@@ -336,11 +336,17 @@ func _show_victory_screen() -> void:
 	await _fade_in_label(line3, 1.3)
 	await get_tree().create_timer(1.5).timeout
 
-	# Botón "Continuar"
+	# Botón "Continuar" — centrado con anclas
 	var cont_btn := Button.new()
 	cont_btn.text = tr("Continuar →")
-	cont_btn.position = Vector2(490, 560)
-	cont_btn.size = Vector2(300, 56)
+	cont_btn.anchor_left = 0.5
+	cont_btn.anchor_right = 0.5
+	cont_btn.anchor_top = 0.0
+	cont_btn.anchor_bottom = 0.0
+	cont_btn.offset_left = -150.0
+	cont_btn.offset_right = 150.0
+	cont_btn.offset_top = 560.0
+	cont_btn.offset_bottom = 618.0
 	cont_btn.add_theme_font_size_override("font_size", 22)
 	cont_btn.modulate = Color(1, 1, 1, 0)
 	vscreen.add_child(cont_btn)
@@ -355,16 +361,32 @@ func _show_victory_screen() -> void:
 	)
 
 
-## Crea un Label centrado con fade-in para la pantalla de victoria.
+## Devuelve el nombre legible del idioma que se está aprendiendo.
+func _target_language_name() -> String:
+	var names := {
+		"de": tr("alemán"), "en": tr("inglés"),
+		"eo": tr("esperanto"), "fr": tr("francés"),
+		"it": tr("italiano"), "pt": tr("portugués"),
+	}
+	return names.get(Lang.target, Lang.target)
+
+
+## Crea un Label de ancho completo posicionado por coordenadas Y absolutas.
 func _make_vscreen_label(text: String, font_size: int, color: Color, offset: Vector2) -> Label:
 	var label := Label.new()
 	label.text = text
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	# Anclas solo horizontales (full width); verticalmente usamos offset absoluto desde el tope.
+	label.anchor_left = 0.0
+	label.anchor_right = 1.0
+	label.anchor_top = 0.0
+	label.anchor_bottom = 0.0
+	label.offset_left = 40.0
+	label.offset_right = -40.0
 	label.offset_top = offset.y
-	label.offset_bottom = offset.y + font_size * 3
+	label.offset_bottom = offset.y + font_size * 4
 	label.add_theme_font_size_override("font_size", font_size)
 	label.add_theme_color_override("font_color", color)
 	label.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 0.85))
@@ -396,17 +418,19 @@ func _show_thanks_screen(vscreen: CanvasLayer) -> void:
 	vscreen.add_child(bg2)
 
 	# Logo / título del juego
-	var title := _make_vscreen_label("Ecos de Nara", 54, Color(0.95, 0.82, 0.38, 1.0), Vector2(0, 100))
+	var title := _make_vscreen_label("Ecos de Nara", 54, Color(0.95, 0.82, 0.38, 1.0), Vector2(0, 120))
 	title.modulate = Color(1, 1, 1, 0)
 	vscreen.add_child(title)
 
-	var subtitle := _make_vscreen_label(tr("Demo — Versión 1.0"), 20, Color(0.65, 0.65, 0.65, 1.0), Vector2(0, 190))
+	var subtitle := _make_vscreen_label(tr("Demo — Versión 1.0"), 20, Color(0.65, 0.65, 0.65, 1.0), Vector2(0, 215))
 	subtitle.modulate = Color(1, 1, 1, 0)
 	vscreen.add_child(subtitle)
 
+	# Texto de gracias con idioma dinámico
+	var lang_name := _target_language_name()
 	var thanks := _make_vscreen_label(
-		tr("Gracias por jugar la demo.\nEspero que hayas disfrutado\naprender tus primeras palabras en alemán."),
-		24, Color(0.92, 0.92, 0.92, 1.0), Vector2(0, 280)
+		tr("Gracias por jugar la demo.\nEspero que hayas disfrutado\naprender tus primeras palabras en %s.") % lang_name,
+		24, Color(0.92, 0.92, 0.92, 1.0), Vector2(0, 295)
 	)
 	thanks.modulate = Color(1, 1, 1, 0)
 	vscreen.add_child(thanks)
@@ -416,11 +440,17 @@ func _show_thanks_screen(vscreen: CanvasLayer) -> void:
 		await _fade_in_label(lbl, 1.0)
 		await get_tree().create_timer(0.3).timeout
 
-	# Botón volver al menú
+	# Botón volver al menú — centrado horizontalmente
 	var menu_btn := Button.new()
 	menu_btn.text = tr("Volver al menú principal")
-	menu_btn.position = Vector2(440, 590)
-	menu_btn.size = Vector2(400, 54)
+	menu_btn.anchor_left = 0.5
+	menu_btn.anchor_right = 0.5
+	menu_btn.anchor_top = 0.0
+	menu_btn.anchor_bottom = 0.0
+	menu_btn.offset_left = -200.0
+	menu_btn.offset_right = 200.0
+	menu_btn.offset_top = 510.0
+	menu_btn.offset_bottom = 566.0
 	menu_btn.add_theme_font_size_override("font_size", 20)
 	menu_btn.modulate = Color(1, 1, 1, 0)
 	vscreen.add_child(menu_btn)
