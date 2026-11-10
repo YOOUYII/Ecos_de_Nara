@@ -33,8 +33,9 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if player_in_range and event.is_action_pressed("interact") and not event.is_echo():
+		var viewport := get_viewport()  # antes de emitir: la interacción puede sacar al NPC del árbol
 		interaction_requested.emit(self)
-		get_viewport().set_input_as_handled()
+		viewport.set_input_as_handled()
 
 
 func _on_body_entered(body: Node2D) -> void:

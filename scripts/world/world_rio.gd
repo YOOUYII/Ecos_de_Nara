@@ -37,11 +37,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and not event.is_echo():
 		if DialogueManager.is_dialogue_open or Notebook.is_open or Letter.is_open:
 			return
+		var viewport := get_viewport()  # antes de actuar: cambiar de escena nos saca del árbol
 		if player_near_portal:
 			_enter_portal()
 		elif player_near_bridge:
 			_inspect_bridge()
-		get_viewport().set_input_as_handled()
+		viewport.set_input_as_handled()
 
 
 func _inspect_bridge() -> void:
